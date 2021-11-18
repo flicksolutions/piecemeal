@@ -10,9 +10,12 @@
 \usepackage{titling} %Titel nach oben verschieben
 \usepackage{amsfonts} %\mathcal
 \usepackage{enumerate} %Für kleine römische Zahlen in Aufzählungen
+
 \usepackage{prettyref}
 \usepackage{tikz}
+%\usepackage[style=apa]{biblatex}%
 \usepackage{apacite}
+
 \usepackage{array,multirow}
 
 % to display strict implication
@@ -89,17 +92,27 @@
 \begin{document}
 \maketitle
 \section{Einführung}
-e
+\section{Umsetzung}
+\subsection{Einzelne Elemente hinzufügen oder entfernen}
+Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste Lösung zu sein, einzelne Commitments oder Prinzipien zu ändern.
+
+\subsection{Analyse der Inferenzbeziehungen}
+
+
+
+\newpage
+\bibliographystyle{apacite}
+\bibliography{references}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{enumerate}
     \item How can logic be defined in a general way, so that different rival theories can be understood as \textit{logical} theories?
-    \item How can a logical theory be shown to be rational? Theories of rationality often presuppose a logical theory or refer to logical notions, but this seems to be problematic when we ask whether a logical theory itself is rational.
-    \item Are there notions and concepts that are shared among the opponents in the debate on logic and, if there are such notions and concepts, how can they help to answer the previous question of rationality?
 \end{enumerate}
-
- \citeA{Goodman}
- 
-\section{What is logic?}\label{sec:logic}
 
 \begin{quote}
     An argument is logically valid just when conditional [sic.], with the conjunction of the premises as antecendent and the conclusion as consequent, is logically true. We can readily slip from one notion to the other[...] \cite[p.~13]{beallrestall}
@@ -109,9 +122,6 @@ e
 \footnote{An extensive discussion of trivialism and why it is an irrational view can be found in chapter 3 of \citeA{priest2}.}
 
  \fullciteauthor{beallrestall}
-\begin{quote}\label{quote:goodman}
-    How do we justify a \textit{de}duction? Plainly, by showing that it conforms to the general rules of deductive inference. [...] But how is the validity of rules to be determined? [...] Principles of deductive inference are justified by their conformity with accepted deductive practice. Their validity depends upon accordance with the particular deductive inferences we actually make and sanction. If a rule yields inacceptable inferences, we drop it as invalid. Justification of general rules thus derives from judgements rejecting or accepting particular deductive inferences. [...] The point is that rules and particular inferences alike are justified by being brought into agreement with each other. [...] The process of justification is the delicate one of making mutual adjustments between rules and accepted inferences[.] \cite[p. 63-64]{Goodman}
-\end{quote}
 
 (see section \ref{principle:GGTP}, page \pageref{principle:GGTP})
 
@@ -122,14 +132,4 @@ C & If I am king of France, God exists.
 \end{tabular}
 \end{center}
 
-
-
 \paragraph{Systematicity} To define the consequence relation by specifying it for each argument separately would be a very unsystematic procedure. \textbf{Systematicity}, like the one brought forward by \citeauthor{resnik0} or \citeauthor{peregrinsvoboda}. They have, as I will argue, a problematic understanding of the purpose of an RE-process.
-
-
-
-\newpage
-\bibliographystyle{apacite}
-\bibliography{references}
-
-\end{document}
