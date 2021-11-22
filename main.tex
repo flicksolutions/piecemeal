@@ -1,41 +1,34 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{german}
+%\usepackage{german}
 \usepackage{color} %Zum stylen von \def
 \usepackage{varwidth} %Zum stylen von \def
 \usepackage{etoolbox} %Zum stylen von \def
 \usepackage{amssymb} %Für die Mengensymbole
+\usepackage{svg}
 \usepackage{amsmath} %Zur Darstellung von Funktionen mit Fallunterscheidung
 \usepackage{scrlayer-scrpage} %Kopf- und Fusszeile
 \usepackage{titling} %Titel nach oben verschieben
 \usepackage{amsfonts} %\mathcal
 \usepackage{enumerate} %Für kleine römische Zahlen in Aufzählungen
 
-\usepackage{prettyref}
-\usepackage{tikz}
-%\usepackage[style=apa]{biblatex}%
-\usepackage{apacite}
 
-\usepackage{array,multirow}
+%\usepackage{prettyref}
+%\usepackage{apacite}
+\usepackage[
+backend=biber,
+style=apa,
+]{biblatex}
+\addbibresource{references.bib}
 
-% to display strict implication
-\DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
-\DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
+%\usepackage{array,multirow}
 
-\DeclareSymbolFont{fgerm}{U}{fgerm}{m}{n}
-\DeclareMathSymbol{\fgecap}{\mathord}{fgerm}{53}
 
-\usepackage[arrow, matrix, curve]{xy} % Paket für kommutative Diagramme, hier verwendet zur Darstellung der Semantik
-
-\usepackage[onehalfspacing]{setspace} % Zeilenabstand 1.5
-\usepackage[default]{gfsbodoni}
-\usepackage[T1]{fontenc}
-%\usepackage{vaucanson-g}
 
 %% Formatierung %%
 \usepackage[dvipdfm]{geometry}
 \setlength{\droptitle}{-10em}
-\geometry{bottom=3.5cm, textwidth=15cm, textheight=20cm, headsep=15mm, top=5cm,}
+\geometry{bottom=3.5cm, textwidth=15cm, headsep=15mm, top=5cm,head=15pt}
 %%%%%%%%%%%%%%%%%%
 
 %\usepackage{vaucanson-g}
@@ -87,11 +80,29 @@
 
 \title{Ein realistischeres Modell des Reflective Equilibrium}
 \author{Bachelorarbeit von Sebastian Flick, 16-121-014\\Betreut von Prof. Dr. Dr. Claus Beisbart\\Universität Bern}
+
+
 \date{\today}
 
 \begin{document}
 \maketitle
 \section{Einführung}
+Das Ziel der Arbeit ist es, das Modell von \autocite{beisbart_making_2015} um einen kleinen aber wichtigen Aspekt zu verändern: Die Anpassung von Überzeugungen und Theorien umsetzbarer und nachvollziehbarer zu machen. Bisher funktioniert der Anpassungsschritt der Überzeugungen an eine Theorie bzw. der Theorie an eine Menge von Überzeugungen in einem komplexen, schwer nachvollziehbaren Schritt: Jede kombinatorisch mögliche Menge an Überzeugungen wird mit der aktuellen Theorie verglichen und dann wird die Beste ausgewählt. Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung noch. Bei Abbildung \ref{fig:smallset} ist eine kleine Menge von Sätzen abgebildet. Wenn nun \textit{s3} das einzige Commitment ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{s1, s2, s3, \{s1,s3\}, \{s2,s3\}\}$ Lediglich die Menge $\{s1,s2\}$ kann ausgeschlossen werden, da sie inkonsistent ist. Die restlichen 5 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s4} hinzukommt, muss folgende Menge überprüft werden: $\{s1, s2, s3, s4, \{s1,s3\}, \{s1,s4\}, \{s2,s3\}, \{s2,s4\}, \{s1,s3,s4\}, \{s2,s3,s4\}\}$. Es handelt sich um 10 Elemente. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht das System unrealistisch in der Benutzung.
+
+\begin{figure}[htbp]
+\label{fig:smallset}
+  \centering
+  \includesvg{figure1}
+  \caption{eine kleine Menge von Sätzen}
+\end{figure}
+
+
+\section{Historische Einführung}
+
+\begin{quote}
+    A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwililng to amend. \autocite[S.~64]{goodman_fact_1983}
+\end{quote}
+
 \section{Umsetzung}
 \subsection{Einzelne Elemente hinzufügen oder entfernen}
 Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste Lösung zu sein, einzelne Commitments oder Prinzipien zu ändern.
@@ -101,8 +112,9 @@ Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste
 
 
 \newpage
-\bibliographystyle{apacite}
-\bibliography{references}
+%\bibliographystyle{apacite}
+%\bibliography{references}
+\printbibliography
 
 \end{document}
 
