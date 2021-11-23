@@ -87,27 +87,48 @@ style=apa,
 \begin{document}
 \maketitle
 \section{Einführung}
-Das Ziel der Arbeit ist es, das Modell von \autocite{beisbart_making_2015} um einen kleinen aber wichtigen Aspekt zu verändern: Die Anpassung von Überzeugungen und Theorien umsetzbarer und nachvollziehbarer zu machen. Bisher funktioniert der Anpassungsschritt der Überzeugungen an eine Theorie bzw. der Theorie an eine Menge von Überzeugungen in einem komplexen, schwer nachvollziehbaren Schritt: Jede kombinatorisch mögliche Menge an Überzeugungen wird mit der aktuellen Theorie verglichen und dann wird die Beste ausgewählt. Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung noch. Bei Abbildung \ref{fig:smallset} ist eine kleine Menge von Sätzen abgebildet. Wenn nun \textit{s3} das einzige Commitment ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{s1, s2, s3, \{s1,s3\}, \{s2,s3\}\}$ Lediglich die Menge $\{s1,s2\}$ kann ausgeschlossen werden, da sie inkonsistent ist. Die restlichen 5 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s4} hinzukommt, muss folgende Menge überprüft werden: $\{s1, s2, s3, s4, \{s1,s3\}, \{s1,s4\}, \{s2,s3\}, \{s2,s4\}, \{s1,s3,s4\}, \{s2,s3,s4\}\}$. Es handelt sich um 10 Elemente. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht das System unrealistisch in der Benutzung.
+Das Ziel der Arbeit ist es, das Modell von \autocite{beisbart_making_2015} um einen kleinen aber wichtigen Aspekt zu verändern: Die Anpassung von Überzeugungen und Theorien umsetzbarer und nachvollziehbarer zu machen. Bisher funktioniert der Anpassungsschritt der Überzeugungen an eine Theorie bzw. der Theorie an eine Menge von Überzeugungen in einem komplexen, schwer nachvollziehbaren Schritt: Jede kombinatorisch mögliche Menge an Überzeugungen wird mit der aktuellen Theorie verglichen und dann wird die Beste ausgewählt. Dies ist einerseits nicht, was \citeauthor{goodman_fact_1983} im Sinn hatte, als er Reflective Equilibrium beschrieb, andererseits ab einer gewissen grösse des zu behandelnen Themas schlicht nicht umsetzbar. Deshalb werden in dieser Arbeit piecemeal-Ansätze erläutert, welche die Vorgehensweise nachvollziehbarer und automatische Systeme leistungsfähiger machen sollen.
 
-\begin{figure}[htbp]
-\label{fig:smallset}
-  \centering
-  \includesvg{figure1}
-  \caption{eine kleine Menge von Sätzen}
-\end{figure}
+Ich werde zum Beginn der Arbeit die Methode Reflective Equilibrium vorstellen und eine kleine historische Einführung in das Thema geben. Danach werde ich zwei Ansätze vorstellen, welche die Anpassung piecemeal-artig angehen. Ich werde sie innerhalb des Modells von \citeauthor{beisbart_making_2015} definieren und beweisen, dass die Ansätze effizienter sind als der konventionelle.Anhand von Simulationen werde ich aufzeigen, dass der Ansatz umsetzbar ist.
 
-
-\section{Historische Einführung}
+\section{Die Ursprünge von Reflective Equilibrium}
 
 \begin{quote}
     A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwililng to amend. \autocite[S.~64]{goodman_fact_1983}
 \end{quote}
 
 \section{Umsetzung}
-\subsection{Einzelne Elemente hinzufügen oder entfernen}
-Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste Lösung zu sein, einzelne Commitments oder Prinzipien zu ändern.
+\subsection{Das bisherige System}
 
-\subsection{Analyse der Inferenzbeziehungen}
+\begin{figure}[htbp]
+  \centering
+  \includesvg{figure1}
+  \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
+\end{figure}
+
+Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung noch. Bei Abbildung \ref{fig:smallset} ist eine kleine Menge von Sätzen abgebildet. Wenn nun \textit{s3} das einzige Commitment ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{s1, s2, s3, \{s1,s3\}, \{s2,s3\}\}$ Lediglich die Menge $\{s1,s2\}$ kann ausgeschlossen werden, da sie inkonsistent ist. Die restlichen 5 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s4} hinzukommt, muss folgende Menge überprüft werden:\linebreak
+$\{s1, s2, s3, s4, \{s1,s3\}, \{s1,s4\}, \{s2,s3\}, \{s2,s4\}, \{s1,s3,s4\}, \{s2,s3,s4\}\}$. Es handelt sich um 10 Elemente. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht das System unrealistisch in der Benutzung.
+
+
+
+\subsection{Der neue Ansatz}
+
+\subsubsection{Einzelne Elemente hinzufügen oder entfernen}
+Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste Lösung zu sein, einzelne Commitments oder Prinzipien zu ändern und zumindest \citeauthor{goodman_fact_1983} spricht sich klar für einen piecemeal-Ansatz aus. Der erste Ansatz dreht sich um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut eignen. Man ändert die bestehende Theorie bzw. die bestehenden Commitments um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
+
+\paragraph{Anpassung der Theorie}
+Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: Alle Sätze des Themas $S$ werden einzeln zu $T_i$ hinzugefügt, falls sie noch nicht enthalten sind und die resultierende Theorie $T_i^*$ konsistent ist. Ausserdem werden alle Prinzipien einzeln aus Theorie $T_i$ entfernt. Daraus entsteht eine neue Theorie $T_i^{**}$. Die Menge der Theorien der Art $T_i^*$ und der Art $T_i^{**}$ werden danach überprüft. Die Theorie, welche den höchsten Wert bei der Achievment-Funktion $Z(C_i,T|C_0)$ erreicht, wird die Theorie $T_i$ ersetzen und zu $T_i+1$ erklärt. Als Beispiel für den Ablauf kann die klassische Struktur \ref{fig:classset} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$.
+
+\begin{figure}[htbp]
+  \centering
+  \includesvg{classical}
+  \caption{eine kleine Menge von Sätzen\label{fig:classset}}
+\end{figure}
+
+
+\paragraph{Anpassung der Überzeugungen}
+
+\subsubsection{Analyse der Inferenzbeziehungen}
 
 
 
