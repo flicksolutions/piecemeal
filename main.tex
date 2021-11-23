@@ -117,13 +117,34 @@ $\{s1, s2, s3, s4, \{s1,s3\}, \{s1,s4\}, \{s2,s3\}, \{s2,s4\}, \{s1,s3,s4\}, \{s
 Wie \cite[S.25]{beisbart_making_2015} schon feststellten, scheint die einfachste Lösung zu sein, einzelne Commitments oder Prinzipien zu ändern und zumindest \citeauthor{goodman_fact_1983} spricht sich klar für einen piecemeal-Ansatz aus. Der erste Ansatz dreht sich um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut eignen. Man ändert die bestehende Theorie bzw. die bestehenden Commitments um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
 
 \paragraph{Anpassung der Theorie}
-Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: Alle Sätze des Themas $S$ werden einzeln zu $T_i$ hinzugefügt, falls sie noch nicht enthalten sind und die resultierende Theorie $T_i^*$ konsistent ist. Ausserdem werden alle Prinzipien einzeln aus Theorie $T_i$ entfernt. Daraus entsteht eine neue Theorie $T_i^{**}$. Die Menge der Theorien der Art $T_i^*$ und der Art $T_i^{**}$ werden danach überprüft. Die Theorie, welche den höchsten Wert bei der Achievment-Funktion $Z(C_i,T|C_0)$ erreicht, wird die Theorie $T_i$ ersetzen und zu $T_i+1$ erklärt. Als Beispiel für den Ablauf kann die klassische Struktur \ref{fig:classset} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$.
+Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
+\begin{enumerate}
+    \item \label{1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie noch nicht enthalten sind und die resultierende Theorie konsistent ist. Die Menge der daraus entstandenen Theorien heisst $T_i^*$.
+    \item \label{2}Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt, werden zu $T_i^*$ hinzugefügt.
+    \item \label{3}Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{4}Die Theorie, welche den höchsten Wert bei der $Z$ erreicht, wird die Theorie $T_i$ ersetzen und zu $T_{i+1}$ erklärt.
+\end{enumerate}
 
-\begin{figure}[htbp]
+\paragraph{Anpassung der Überzeugungen}
+Ausgehend von einer Theorie $T_i$ wird die Menge der Überzeugungen $C_i$ wie folgt angepasst:
+\begin{enumerate}
+    \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Falls sie aber enthalten sind, wird die nur Negation des Satzes hinzugefügt. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$.
+    \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
+    \item \label{c3} Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{c4}Die Theorie, welche den höchsten Wert bei der $Z$ erreicht, wird die Theorie $C_i$ ersetzen und zu $C_{i+1}$ erklärt.
+\end{enumerate}
+
+\begin{figure}
   \centering
   \includesvg{classical}
-  \caption{eine kleine Menge von Sätzen\label{fig:classset}}
+  \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
 \end{figure}
+
+ Als Beispiel für den Ablauf kann die klassische Struktur \ref{fig:classset-initial1} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Die erste Anpassung der Theorie überprüft nun einfach alle einzelnen Sätze $\{s1,...,s7\}$. Derjenige welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_0$. Die Anpassung der Überzeugungen wird an dieser Stelle übersprungen, wir können aber davon ausgehen, dass die Überzeugungen dahingehend verändert werden, dass entweder. Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten. Hierbei kann $\{s1,s2\}$ ausgeschlossen werden, weil die Theorie inkonsistent ist. Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen und der Prozess endet.
+ 
+ Während des Prozesses mussten in der ersten Änderung sieben Theorien und in der zweiten Änderung sechs Theorien überprüft und verglichen werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $2^7$ Theorien überprüft und verglichen werden. Im
+
+
 
 
 \paragraph{Anpassung der Überzeugungen}
