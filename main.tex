@@ -131,7 +131,7 @@ Ausgehend von einer Theorie $T_i$ wird die Menge der Überzeugungen $C_i$ wie fo
     \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Falls sie aber enthalten sind, wird die nur Negation des Satzes hinzugefügt. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$.
     \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
     \item \label{c3} Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
-    \item \label{c4}Die Theorie, welche den höchsten Wert bei der $Z$ erreicht, wird die Theorie $C_i$ ersetzen und zu $C_{i+1}$ erklärt.
+    \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei der $Z$ erreicht, wird die Menge $C_i$ ersetzen und zu $C_{i+1}$ erklärt.
 \end{enumerate}
 
 \begin{figure}
@@ -140,22 +140,44 @@ Ausgehend von einer Theorie $T_i$ wird die Menge der Überzeugungen $C_i$ wie fo
   \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
 \end{figure}
 
- Als Beispiel für den Ablauf kann die klassische Struktur \ref{fig:classset-initial1} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Die erste Anpassung der Theorie überprüft nun einfach alle einzelnen Sätze $\{s1,...,s7\}$. Derjenige welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_0$. Die Anpassung der Überzeugungen wird an dieser Stelle übersprungen, wir können aber davon ausgehen, dass die Überzeugungen dahingehend verändert werden, dass entweder. Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten. Hierbei kann $\{s1,s2\}$ ausgeschlossen werden, weil die Theorie inkonsistent ist. Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen und der Prozess endet.
+ Als Beispiel für den Ablauf kann die klassische Struktur \ref{fig:classset-initial1} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Die erste Anpassung der Theorie überprüft nun einfach alle einzelnen Sätze $\{s1,...,s7\}$. Derjenige welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_0$.
  
- Während des Prozesses mussten in der ersten Änderung sieben Theorien und in der zweiten Änderung sechs Theorien überprüft und verglichen werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $2^7$ Theorien überprüft und verglichen werden. Im
-
-
-
-
-\paragraph{Anpassung der Überzeugungen}
+ Die Überzeugungen müssen nun angepasst werden. Dazu überprüfen wir die Menge von Mengen welche $C_0$ und einen weiteren Satz enthalten. Im Schritt \ref{c1} werden ausserdem alle Mengen erstellt, die entstehen, wenn man einzelne Sätze in $C_0$ negiert, zum Beispiel $\{\lnot s3, s4, s5\}$. Ausserdem überprüfen wir entsprechend Schritt \ref{c2} die Mengen, welche entstehen, wenn man einen einzelnen Satz aus $C_0$ entfernt. Die Überzeugungen werden dahingehend verändert, dass entweder $\neg s6$ oder $neg s2$ hinzugefügt werden, weil dadurch der Parameter \textit{Account} verbessert wird. Dieser wird bei beiden Änderungen im selben Mass verändert, das heisst, es muss eine Entscheidung getroffen werden. Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf eine weitere Möglichkeit zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
+ 
+ Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten. Hierbei kann $\{s1,s2\}$ ausgeschlossen werden, weil die Theorie inkonsistent ist. Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen.
+ 
+ Es folgt eine weitere Anpassung der Überzeugungen. Da sich die Theorie nicht verändert hat, liegt auf der Hand, dass das Hinzufügen von $\neg s6$ zu $C_1$ die beste Alternative ist. Somit sieht $C_2$ nun wie folgt aus: $C_2 = \{s3, s4, s5, \neg s2, \neg s6\}$
+ 
+ Weil $T_2$ mit $T_1$ identisch ist, müssen auch dieselben Theorien überprüft werden. Das Ergebnis wird sich nicht verändern und $T_3$ wird mit $T_2$ gleichgesetzt.
+ 
+ Es folgt eine letzte Überprüfung der Überzeugungen. Nach dem beschriebenen Rezept wird diese wieder durchgeführt, mit dem Ergebnis, dass es keine Verbesserung gibt und $C_3$ mit $C_4$ gleichgesetzt wird. Damit endet der Prozess mit dem Ergebnis eines Reflective Equilibriums.
+ 
+ Während des Prozesses mussten in der ersten Änderung sieben Theorien und in der zweiten und dritten Änderung sechs Theorien überprüft und verglichen werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $2^7$ Theorien (ohne Berücksichtigung der inkonsistenten Theorien) überprüft und verglichen werden. In der Anpassung der Überzeugungen müssen bei jedem Schritt immer $2n + (t-n)$ Überzeugungen überprüft werden. Wobei $n$ der Anzahl Überzeugungen in $C_i$ entspricht und $t$ der Anzahl von Sätzen im Topic. Für das Beispiel heisst das für Schritt Eins $2*3 + (7-3) = 10$, für Schritt Zwei $11$ und für Schritt Drei und Vier $12$. Beim traditionellen Ansatz müssen wieder bei jedem Schritt $2^7$ Überzeugungen überprüft werden. Wichtig für die Frage, ob der traditionelle Ansatz wirklich weniger effizient ist, ist neben der Anzahl zu überprüfenden Mengen pro Schritt auch die Anzahl der Schritte. Diese wäre für unser Beispiel für das traditionelle Modell 4 Schritte (2 für die Überzeugungen und 2 für die Theorien), für den neuen Ansatz sind es 7 Schritte. Die Anzahl Schritte ist 1.75 Mal höher, aber die Anzahl von Rechenschritten pro Schritt ist $11.3\Bar{7}$ Mal höher. Wenn sich bei weiteren Kompositionen ähnliche Werte ergeben, ist die neue Methode der traditionellen vorzuziehen. Ausserdem gilt es zu überprüfen, ob die Methode globale Optima erreicht.
 
 \subsubsection{Analyse der Inferenzbeziehungen}
+Eine weitere Idee, einen piecemeal-Ansatz umzusetzen, ist die Analyse der gegebenen Inferenzbeziehungen. Aufgrund der Inferenzbeziehungen zwischen Sätzen, kann klug entschieden werden, welche Sätze sich eher als Theorien lohnen. Auch für die Anpassung der Überzeugungen kann es hilfreich sein, zu analysieren, welche Inferenzbeziehungen die zuletzt hinzugefügten Prinzipien haben.
 
+\paragraph{Anpassung der Theorie}
+Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
+\begin{enumerate}
+    \item \label{i1} Die erste Überzeugung aus $C_i$ wird ausgewählt: $c_0$ (Index 0)
+    \item \label{i2} Für die ausgewählte Überzeugung $c_x$werden alle Prinzipien gesucht, welche die ausgewählte Überzeugung zum Inhalt haben. Jedes gefundene Prinzip eröffnet eine neue Menge $P_n,y$, in der alle Sätze von $P_n-1$ sind und sie selbst. ($n$ beschreibt den aktuellen Index der Durchgänge, $y$ den Index des Prinzips)
+    \item \label{i3} Falls $c_x$ noch nicht das letzte Element aus $C_i$ ist, wird die nächste Überzeugung aus $C_i$ wird ausgewählt und zu Schritt \ref{i2} gesprungen. $n$ wird um $1$ erhöht.
+    \item \label{i3} Die Mengen, die entstehen, wenn man die einzelnen Überzeugungen zu $T_i$ hinzufügt, werden zu $T_i^*$ hinzugefügt.
+    \item \label{i4}Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{i5}Die Theorie, welche den höchsten Wert bei der $Z$ erreicht, wird die Theorie $T_i$ ersetzen und zu $T_{i+1}$ erklärt, ausser ihr Wert ist kleiner als der Wert von $T_i$. In diesem Fall wird $T_i$ zu $T_{i+1}$ erklärt.
+\end{enumerate}
 
+\paragraph{Anpassung der Überzeugungen}
+Ausgehend von einer Theorie $T_i$ wird die Menge der Überzeugungen $C_i$ wie folgt angepasst:
+\begin{enumerate}
+    \item \label{i1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Falls sie aber enthalten sind, wird die nur Negation des Satzes hinzugefügt. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$.
+    \item \label{i2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
+    \item \label{i3} Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{i4}Die Menge von Überzeugungen, welche den höchsten Wert bei der $Z$ erreicht, wird die Menge $C_i$ ersetzen und zu $C_{i+1}$ erklärt.
+\end{enumerate}
 
 \newpage
-%\bibliographystyle{apacite}
-%\bibliography{references}
 \printbibliography
 
 \end{document}
