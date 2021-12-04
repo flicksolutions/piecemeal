@@ -124,7 +124,7 @@ Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung
 
 \section{Der piecemeal Ansatz}
 \begin{quote}
-    A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwililng to amend. \autocite[S.~64]{goodman_fact_1983}
+    A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwilling to amend. \autocite[S.~64]{goodman_fact_1983}
 \end{quote}
 
 %%%%delete me 
@@ -132,23 +132,53 @@ Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung
 %%%
 
 \subsection{Einzelne Elemente hinzufügen oder entfernen}
-Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegenste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Commitments oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im ersten in dieser Arbeit vorgestellten Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Commitments um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
+Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Commitments oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im ersten in dieser Arbeit vorgestellten Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Commitments um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
 
 \paragraph{Anpassung der Theorie}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
 \begin{enumerate}
-    \item \label{1} Alle Sätze des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie noch nicht enthalten sind und die resultierende Theorie konsistent ist. Falls sie aber enthalten sind, wird die Negation des Satzes hinzugefügt. Die Menge der daraus entstandenen Theorien heisst $T_i^*$.
-    \item \label{2}Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt, werden zu $T_i^*$ hinzugefügt.
-    %\item Die Mengen, die entstehen, wenn man einzelne Prinzipien in $T_i$ negiert, %werden zu $T_i^*$ hinzugefügt.
-    \item \label{3}Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{1} Alle Sätze $s$ des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie noch nicht enthalten sind. Die Menge der daraus entstandenen Theorien heisst $T_i^*$. Die Sätze in $S$ sind indexiert.
+    
+    $$ 
+    T_i^*:= \{ T_i \cup s_j: s_j \in S\}
+    %T_i^*:= \forall s \in S : \{T_i \cup s_1, ..., T_i \cup s_{\lvert S \rvert} \}
+    $$
+    \item \label{1.1} Jede Theorie, die entsteht, wenn man einen einzelnen Satz in $T_i$ negiert, wird $T_i^*$ hinzugefügt. 
+    $$
+    T_i^* \cup \{ (T_i \setminus \{e_j\}) \cup \neg e_j: e_j \in T_i\}
+    %T_i^* \bigcup \forall e \in T_i : \{(T_i \setminus \{e_1\})\cup \{\neg e_1\}, ..., T_i \setminus \{e_{\lvert T_i \rvert}\})\cup \{\neg e_{\lvert T_i \rvert}\}\}
+    $$
+    \item \label{2} Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt, werden zu $T_i^*$ hinzugefügt.
+    
+    $$
+    T_i^* \cup \{ T_i \setminus \{e_j\}: e_j \in T_i\}
+    %T_i^* \bigcup \forall e \in T_i : \{T_i \setminus \{e_1\}, ..., T_i \setminus \{e_{\lvert T_i \rvert}\}\}
+    $$
+    
+    \item \label{konsistenzfilter} Inkonsistente Mengen werden aus $T_i^*$ entfernt. \ref{konsistenz}
+    
+    $$
+        T_i^* \setminus \{f : f \in T_i^* \land f \text{ ist inkonsistent} \}
+    $$
+    \item \label{3} Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
     \item \label{4}Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zu $T_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$.
 \end{enumerate}
 
 \paragraph{Anpassung der Überzeugungen}
-Ausgehend von einer Theorie $T_i$ wird die Menge der Überzeugungen $C_i$ wie folgt angepasst:
+Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimalkonsistent sein muss.
 \begin{enumerate}
-    \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Falls sie aber enthalten sind, wird die Negation des Satzes hinzugefügt. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$.
+    \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
+    $$ 
+    C_i^*:= \{ C_i \cup s_j: s_j \in S\}
+    $$
+    \item Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert, wird zu $C_i^*$ hinzugefügt.
+    $$
+    C_i^* \cup \{ (C_i \setminus \{c_j\}) \cup \neg c_j: c_j \in C_i\}
+    $$
     \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
+    $$
+    C_i^* \cup \{ C_i \setminus \{c_j\}: c_j \in C_i\}
+    $$
     \item \label{c3} Die Untermengen von $C_i^*$ werden mittels Achievement-Funktion $Z$ überprüft.
     \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_1$ - Ansonsten wird $C_1$ zu $C_{i+1}$.
 \end{enumerate}
