@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-%\usepackage{german}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst}
 \usepackage{color} %Zum stylen von \def
 \usepackage{varwidth} %Zum stylen von \def
 \usepackage{etoolbox} %Zum stylen von \def
@@ -13,6 +15,7 @@
 \usepackage{titling} %Titel nach oben verschieben
 \usepackage{amsfonts} %\mathcal
 \usepackage{enumerate} %Für kleine römische Zahlen in Aufzählungen
+\usepackage{hyperref}
 
 
 %\usepackage{prettyref}
@@ -28,6 +31,7 @@ style=apa,
 
 
 %% Formatierung %%
+\sloppy
 \usepackage[dvipdfm]{geometry}
 \setlength{\droptitle}{-10em}
 \geometry{bottom=3.5cm, textwidth=15cm, headsep=15mm, top=5cm,head=15pt}
@@ -89,50 +93,91 @@ style=apa,
 \begin{document}
 \maketitle
 \section{Einführung}
-Das Ziel der Arbeit ist es, das Modell von \autocite{beisbart_making_2015} um einen kleinen aber wichtigen Aspekt zu erweitern: Die Anpassung von Überzeugungen und Theorien umsetzbarer und nachvollziehbarer zu machen. Um herauszufinden, wie Theorien und Überzeugungen in den jeweiligen Anpassungsschritten angepasst werden müssen, wird bisher einfach jede mögliche und konsistente Kombination von Prinzipien bzw. Überzeugungen mit der \textit{Achievement-Funktion} $Z$ überprüft, dann wird die Kombination, welche den höchsten Wert erreicht ausgewählt. Dies ist einerseits nicht, was \citeauthor{goodman_fact_1983} im Sinn hatte, als er Reflective Equilibrium beschrieb - er sprach von einzelnen Sätzen, welche zur Theorie bzw. zu den Überzeugungen addiert oder subtrahiert würden \autocite{goodman_fact_1983}, andererseits ab einer gewissen Grösse des zu behandelnden Themas schlicht nicht umsetzbar. Ausserdem ist es wichtig einen intuitiveren Weg zu finden, wie die Änderungen an Theorie und Überzeugungen gemacht werden - Denn auch von diesem Faktor hängt die Glaubwürdigkeit der Methode ab. Deshalb werden in dieser Arbeit zwei neue Ansätze erläutert, welche die Vorgehensweise nachvollziehbarer und automatische Systeme leistungsfähiger machen sollen.
+In dieser Arbeit geht es um ein Modell, welches das Überlegungsgleichgewicht umsetzt. Für diese Methode zur Rechtfertigung, welches seit den Siebzigerjahren des letzten Jahrhunderts von vielen Philosophen vertreten und von ähnlichen vielen kritisiert wurde, entwickelten \citeauthor{beisbart_making_2015} nämlich ein exaktes Modell.
+Das Ziel der Arbeit ist es, innerhalb dieses Modells einen kleinen, aber wichtigen Aspekt zu untersuchen: die Theorie- und Überzeugungsanpassung. Konkret soll ein Piecemeal-Ansatz formuliert werden. Dieser soll Anpassung von Überzeugungen und Theorien umsetzbarer und nachvollziehbarer zu machen. Um herauszufinden, wie Theorien und Überzeugungen in den jeweiligen Anpassungsschritten angepasst werden müssen, wird bisher einfach jede mögliche und konsistente Kombination von Prinzipien bzw. Überzeugungen überprüft. Dies ist einerseits nicht, was \citeauthor{goodman_fact_1983} im Sinn hatte, als er Reflective Equilibrium beschrieb - er sprach von einzelnen Sätzen, welche zur Theorie bzw. zu den Überzeugungen addiert oder subtrahiert würden \autocite{goodman_fact_1983}, andererseits ab einer gewissen Grösse des zu behandelnden Themas schlicht nicht umsetzbar. Ausserdem ist es wichtig einen intuitiven Weg zu finden, wie die Änderungen an Theorie und Überzeugungen gemacht werden - Denn auch von diesem Faktor hängt die Glaubwürdigkeit der Methode ab. Ein möglicher Weg ist ein Piecemeal-Ansatz, welcher Überzeugungen und Prinzipien stückweise zu vorhanden Überzeugungen bzw. Theorien hinzufügt. Ich setze mir zum Ziel, einen bestimmten Piecemeal-Ansatz auszuformulieren. Wenn in der Folge der Arbeit von einem Piecemeal-Ansatz die Rede ist, ist mein ausformulierter Ansatz gemeint. Um herauszufinden, ob sich die Anwendung des Piecemeal-Ansatzes lohnt, werde ich eine Ensemblestudie generieren und die vorhandenen Daten analysieren, um zu verstehen, unter welchen Bedingungen der Piecemeal-Ansatz tatsächlich besser ist, als der traditionelle Ansatz.
 
-Ich werde zum Beginn der Arbeit die Methode Reflective Equilibrium vorstellen und eine kleine historische Einführung in das Thema geben. Danach werde ich zwei Ansätze vorstellen, welche die Anpassung piecemeal-artig angehen. Ich werde sie innerhalb des Modells von \citeauthor{beisbart_making_2015} definieren und beweisen, dass die Ansätze effizienter sind als der konventionelle. Anhand von Simulationen werde ich aufzeigen, dass die Ansätze umsetzbar sind.
+Ich werde zum Beginn der Arbeit die Methode Reflective Equilibrium vorstellen und eine kleine historische Einführung in das Thema geben. Danach werde ich den Piecemeal-Ansatz detailliert vorstellen. Ich werde sie innerhalb des Modells von \citeauthor{beisbart_making_2015} definieren und zeigen, dass der Ansatz unter bestimmten Bedingungen besser ist als der konventionelle. Ausserdem werde ich einen Vorschlag für die Erstellung einer ersten Theorie vorbringen.
 
-%%%%delete me 
-\textit{Die Einführung wird noch überarbeitet werden.}
-%%%
-\section{Die Ursprünge von Reflective Equilibrium}
+\section{Reflective Equilibrium und seine Ursprünge}
 
-%%%%delete me 
-\textit{Der historische Teil ist noch in Bearbeitung.}
-%%%
+Bei Reflective Equilibrium handelt es sich um eine Methode zur Rechtfertigung unserer Überzeugungen. Sie ist durchaus als alltägliches Instrument zu verstehen, das jede Person nutzt, um zu gerechtfertigter Meinung zu kommen. Wir pflegen unsere Festlegungen in ein System von Prinzipien ein und passen beides aneinander an. Am Ende dieser Anpassungen erhalten wir einen Gleichgewichtszustand. Aus dem System von Prinzipien folgen - einige oder alle - unsere Überzeugungen, die wir anfangs für plausibel hielten. Dadurch ist die Überzeugung gerechtfertigt. Es gibt verschiedene Auffassungen darüber, wie Reflective Equilibrium funktioniert - oder funktionieren soll - und wie es zu verstehen ist \autocite{sep-reflective-equilibrium}.
+Ich werde mich in dieser Arbeit aber vor allem an die Interpretation, die auch in \cite{beisbart_making_2015} vertreten wird, halten. Dies beinhaltet, dass Reflective Equilibrium - wie eingangs beschrieben - durchaus eingesetzt werden kann zur Beantwortung von Fragen in einem Gebiet und somit nach Scanlon deliberativ ist. Eine rein deskriptive Auffassung, bei welcher durch das Reflective Equilibrium lediglich herausgefunden werden kann, welche Überzeugungen eine Person hat \autocite[S.~143]{freeman_rawls_2002}. Für Scanlon ist der Prozess kein rein quantitatives Unterfangen. Das Individuum, welches einen RE-Prozess durchführt, merkt beispielsweise durch welche Prinzipien ihr Commitment gestützt wird und kann sich dann spontan dazu entscheiden, das Commitmentment aufzugeben. Für ihn ist somit ausgeschlossen, dass der Prozess durch ein mathematisches Modell abgebildet werden kann. \autocite[S.~148]{freeman_rawls_2002}
+Eine weitere Distinktion in den verschiedenen Interpretationen von Reflective Equilibrium, ist die Unterscheidung zwischen \textit{wide} (breit) und \textit{narrow} (schmal) Reflective Equilibrium: Diese wurde von \citeauthor{daniels_wide_1996} ins Spiel gebracht. Das Modell von \citeauthor{beisbart_making_2015} bildet ein \textit{narrow} RE ab. Denn für bei einem \textit{wide} RE würden Hintergrund-Theorien miteinbezogen werden und diesen wurde im Modell kein Platz eingeräumt. Hintergrundtheorien können während des Prozesses nicht verändert werden und geniessen einen Sonderstatus. Durch eine Einschränkung der Argumente - diese müssen mit etwaigen Hintergrundtheorien konsistent sein - könnte das Modell aber auch innerhalb eines \textit{wide} RE funktionieren. \autocite[S.~22]{beisbart_making_2015}
 
-\section{Änderungen im konventionellen System}
+Der Begriff Reflective Equilibrium wurde 1971 von John Rawls geprägt. In \autocite{rawls_theory_1971} erarbeitet er die Methode, um die \textit{original position} einer Gesellschaft zu rechtfertigen. In dieser überprüft man, ob die gewählten Prinzipien mit den in Betracht gezogenen Überzeugungen (betreffend der Gerechtigkeit) übereinstimmen oder diese in akzeptierbarer Weise erweitern. Wir haben gewisse Überzeugungen (über Gerechtigkeit) für die wir klare Intuitionen haben. Diese Überzeugungen können wir als Fixpunkte benutzen, um mit Prinzipien, welche diese Fixpunkte erklären, weitere Überzeugungen zu erklären, für die wir keine klaren Intuitionen haben. Durch die Beschreibung der \textit{initial situation} generieren wir Prinzipien, diese gleichen wir mit den Überzeugungen ab. Erklären die Prinzipien die Überzeugungen nicht, so kann man entweder die Überzeugungen anpassen oder aber die Prinzipien. Daraus entsteht - nach möglicherweise mehrmaliger Wiederholung - ein Reflective Equilibrium. Er beschreibt die Überzeugungen und Theorie als jeweils eine Einheit, diese werden auch als Einheit verändert. Ein Piecemeal-Ansatz - wie ich ihn später als Alternative vorschlagen werde - ist bei Rawls also nicht zu entdecken. Rawls verweist bei der Verwendung des Begriffs Reflective Equilibrium auf \cite{goodman_fact_1983}, welcher vor ihm über die Idee gesprochen hat, ihr aber noch keinen Namen gegeben hat. \autocite[S.~20]{rawls_theory_1971}
 
-\begin{figure}[h]
+Bei Goodman ist ein Piecemeal-Ansatz, bei dem Theorie und Überzeugungen stückweise angepasst werden, zu entdecken:
+
+\begin{quote}
+    A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwilling to amend. \autocite[S.~64]{goodman_fact_1983}
+\end{quote}
+
+Er spricht also von einzelnen Prinzipien, welche abgeändert werden, statt von einer ganzen Theorie. Und von einzelnen Überzeugungen, die angepasst werden, wenn sie einem Prinzip widersprechen, dass wir nicht ändern wollen. Nicht alle Autoren, die sich zum Thema Reflective Equilibrium äussern, machen sich detaillierte Gedanken über die Anpassungsschritte. So scheint es beispielsweise bei \autocite{tersman_reflective_1993} unklar, ob er sich für einen Piecemeal-Ansatz ausspricht oder nicht. Wohl einfach, weil es nicht im Fokus seiner Arbeit lag. Es soll aber im Fokus der vorliegenden Arbeit liegen. Dazu fasse ich zuerst kurz das Model in \citeauthor{beisbart_making_2015} kurz vor und lege den Fokus auf die Änderungen an einem System, da dies der Teil ist, der uns am meisten interessiert.
+
+\section{Das konventionelle System}
+
+Das Modell von \citeauthor{beisbart_making_2015} geht von einer Menge von Sätzen aus, die für das Thema, über welches man ein RE erhalten will, relevant sind. Diese Menge ist unter Negation geschlossen. Das heisst, wenn sie einen Satz beinhalten, so beinhaltet sie auch dessen Negation.
+Der Prozess, welcher abgebildet wird, beginnt mit einem initialen epistemischen Zustand.
+
+\paragraph{Der epistemische Zustand} Dieser epistemische Zustand besteht aus Theorie und einer Menge von Überzeugungen. Die Theorie wiederum besteht aus einzelnen Prinzipien. Prinzipien können beliebige Sätze aus der Satzmenge sein. Der Inhalt einer Theorie ist die Menge von Sätzen, die aus den Prinzipien folgt. So kann nun also jeder Satz in einem Satzpool Prinzip, Inhalt und/oder Überzeugung sein. Sätze folgen aus sich selbst, sodass im Inhalt einer Theorie immer auch die Prinzipien sind. In Abbildung \ref{fig:smallset} ist die Menge aller Sätze folgende: $\{s1,s2,\neg s1, \neg s2\}$. Durch den Pfeil ist angedeutet, dass $s2$ aus $s1$ folgt. Dies ist das einzige Argument in der Struktur. Zum initialen Zustand gehört nun also eine Menge von Überzeugungen. Wir wählen $\{s2\}$. Ausserdem gehört eine initiale Theorie dazu. Diese ist im Standard-Modell die leere Menge. Der Inhalt der leeren Menge ist ebenfalls die leere Menge - Das heisst aus der leeren Menge folgen keine Sätze. Angenommen $\{s1\}$ wäre die Theorie, so wäre $s1$ das einzige Prinzip der Theorie und $\{s2\}$ der Inhalt der Theorie.
+
+Hat man einen initialen epistemischen Zustand, folgt als erster Schritt die Änderung der Theorie und danach die Änderung der Überzeugungen. Diese werden so lange angewendet, bis eine Haltebedingung zutrifft.\autocite[S.~10]{beisbart_making_2015}
+
+Für die Änderung der Theorie werden verschiedene Theoriekandidaten miteinander verglichen. Ich werde \textit{\textcolor{red}{später}} darauf zu sprechen kommen, wie diese gefunden werden. Die Kandidaten werden mittels einer Achievement-Funktion überprüft.
+
+\paragraph{Die Achievement-Funktion}
+Die Achievement-Funktion untersucht einen epistemischen Zustand auf die Kriterien der \textit{Kohärenz (Account)}, der \textit{Systematizität (Systematicity)} und des \textit{Respekts (Faithfulness)}. \textit{Kohärenz} beschreibt, wie sehr die Theorie die Überzeugungen erklärt. Dabei wird der Wert der Kohärenz verringert, für jede Überzeugung, welche mit der Theorie inkonsistent ist, die nicht im Inhalt der Theorie ist und für jeden Satz im Inhalt der Theorie, welcher keine Überzeugung ist.
+\textit{Systematizität} bezieht sich nur auf die Theorie eines epistemischen Zustandes. Je mehr Sätze im Inhalt einer Theorie sind im Verhältnis zu den Sätzen in der Theorie, umso systematischer ist die Theorie. Eine Theorie mit einem Satz, welcher vier Sätze im Inhalt der Theorie hat, ist also systematischer, als eine Theorie, mit einem Satz, welche nur sich selbst im Inhalt der Theorie hat.
+\textit{Respekt} bezieht sich nur auf die Überzeugungen eines epistemischen Zustandes. Der Respekt der Überzeugungen wird schlechter, für jede initiale Überzeugung, welche negiert in den Überzeugungen vorkommt und für jede initiale Überzeugung, die nicht vorkommt.
+
+\paragraph{Gewichtung} Diese drei Desiderata sind unterschiedlich gewichtet. Dies ist wichtig, da die Desiderata einen epistemischen Zustand oft in unterschiedliche Richtungen ziehen. Beispielsweise wird ein epistemischer Zustand kohärenter, wenn man alle Überzungen entfernt, die nicht Teil des Inhalts sind. Darunter leidet allerdings der Respekt. Deshalb müssen die Desiderata unterschiedlich gewichtet werden, damit überhaupt Fortschritt erzielt werden kann. Ich verwendete für meine Ensemblestudie lediglich die Standard-Gewichte (Kohärenz: 0.35, Respekt: 0.10, Systematizität: 0.55) und werde innerhalb der Arbeit auch nicht weiter auf die Gewichte eingehen. Es sei lediglich vermerkt, dass das Modell verschiedene Gewichtungen der Desiderata erlaubt. \autocite[S.~9]{beisbart_making_2015}
+
+\paragraph{Konsistenz}
+Ich habe bisher den Begriff der Konsistenz schon einige mal verwendet, ohne genau zu definieren, was dieser bedeutet. Das möchte ich nun ändern. Es gibt zwei Arten von Konsistenz:
+
+\textit{\textcolor{red}{Hier folgt noch eine Einführung der fehlenden Begriffe für den folgenden Teil,  wie beispielsweise der Achievement-Funktion. Auch Branching und Konsistenz werden noch als Begriffe eingeführt}}
+
+\begin{figure}[ht]
   \centering
   \includegraphics{figure1}
   \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
 \end{figure}
 
-Wenn Theorien und Überzeugungen im Modell von \citeauthor{beisbart_making_2015} angepasst werden müssen, so funktioniert dies nach einem einfach beschriebenen Rezept:
+Wenn Überzeugungen im Modell von \citeauthor{beisbart_making_2015} angepasst werden müssen, so funktioniert dies nach einem einfach beschriebenen Rezept:
 
 \begin{quote}
-    [...] the agent newly adopts an epistemic state $(C_i, T_{i+1})$ such that the theory $T_{i+1}$ scores best in terms of the achievement function $Z$ given $C_i$. \autocite[S.~11]{beisbart_making_2015}
+    [...] the agent replaces her current commitments $C_i$ with those commitments $C_{i+1}$ that score best on the achievement function Z (given T_{i+1}).
+    \autocite[S.~11]{beisbart_making_2015}
 \end{quote}
 
-Die Theorie, welche den höchsten Wert der \textit{Achievement-Funktion} $Z$ hat, wird als neue Theorie übernommen. Aber wie findet man heraus, welche Theorie das ist? Man überprüft jede mögliche, konsistente Theorie. Die Menge dieser Theorien ist vor allem aus der Menge an Sätzen im Thema bestimmt - zu einem kleineren Teil aus den Inferenzbeziehungen zwischen den Sätzen. Je mehr Sätze, umso mehr mögliche Theorien. Das Problem ist, dass die Zahl der möglichen Theorien exponentiell zur Zahl der Sätze im Thema wächst. Jeder zusätzliche Satz in einem Thema verdreifacht die Anzahl der möglichen Theorien. Das kommt daher, dass ein Satz oder seine Negation Prinzip einer Theorie sein kann oder er ist nicht dabei. Das sind pro Satz 3 mögliche Werte. Aus diesen Überlegungen leitet sich die Zahl der zu überprüfenden Theorien pro Anpassungsschritt ab: $\lvert T \rvert = 3^n$, wobei $n$ die Zahl der Sätze im Thema ist.
+Die Menge von Überzeugungen, welche (zusammen mit der aktuellen Theorie) den höchsten Wert der \textit{Achievement-Funktion} $Z$ erreicht, wird als neue Menge von Überzeugungen übernommen. Aber welche Mengen von Überzeugungen ($C^*$) stehen uns überhaupt zur Verfügung? Die Anzahl der Mengen von Überzeugungen in $C^*$ ($\lvert C^* \lvert$) ist aus der Menge an Sätzen im Thema bestimmt. Je mehr Sätze, umso mehr Mengen von Überzeugungen. Das Problem ist, dass $\lvert C^* \lvert$ exponentiell zur Zahl der Sätze im Thema wächst. Jeder zusätzliche Satz in einem Thema verdreifacht die Anzahl der Mengen von Überzeugungen. Das kommt daher, dass ein Satz oder seine Negation Teil einer Menge von Überzeugungen sein kann oder er ist nicht dabei. Das sind pro Satz 3 Möglichkeiten. Aus diesen Überlegungen leitet sich die Zahl der zu überprüfenden Mengen von Überzeugungen pro Anpassungsschritt ab: $\lvert C^* \rvert = 3^n$, wobei $n$ die Zahl der Sätze im Thema ist. Es gilt zu beachten, dass noch mehr als 3 Möglichkeiten pro neuen Satz bestehen: Es könnte ja auch der Satz und seine Negation Teil einer Menge von Überzeugungen sein. Diese Möglichkeit wird aber ausgeschlossen, da von Mengen von Überzeugungen \textit{minimale Konsistenz} gefordert wird.
 
-Bei den Überzeugungen sieht es leider nicht besser aus: Auch hier werden analog zu den Theorien alle möglichen Überzeugungen überprüft. Erschwerend kommt hinzu, dass die Menge der Überzeugungen weniger durch Inkonsistenzen aus Inferenzbeziehungen eingeschränkt werden. Weil die Überzeugungen nur \textit{minimal konsistent} sein müssen.
+Die Regel zur Anpassung einer Theorie sieht zwar analog aus, allerdings können die Sätze, welche überprüft werden müssen, etwas eingeschränkt werden.
+
+\begin{quote}
+    [...] the agent newly adopts an epistemic state $(C_i, T_{i+1})$ such that the theory $T_{i+1}$ scores best in terms of the achievement function $Z$ given $C_i$.
+    \autocite[S.~11]{beisbart_making_2015}
+\end{quote}
+
+Zusätzlich schränken nun die Inferenzbeziehungen zwischen den Sätzen, die Kandidaten ein. Weil Theorien vollständig konsistent sein müssen, darf auch kein Theoriekandidat Inkonsistenzen enthalten. Wenn also eine bspw. der Satz $s3$ aus $s1$ folgt und aus $s2$ folgt $\neg s2$, so kann man auf den Theoriekandidaten ${s1,s2}$ verzichten, denn der Inhalt dieser Theorie wäre ${s1,s2,s3,\neg s3}$. Er enthält also zwei Sätze, die sich widersprechen ($s3$ und $\neg s3$). Somit ist dies gar kein Theoriekandidat.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics{figure1}
+  \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
+\end{figure}
+
+ Man überprüft jede mögliche, konsistente Theorie. Die Menge dieser Theorien ist vor allem aus der Menge an Sätzen im Thema bestimmt - zu einem kleineren Teil aus den Inferenzbeziehungen zwischen den Sätzen. Je mehr Sätze, umso mehr mögliche Theorien. Das Problem ist, dass die Zahl der möglichen Theorien exponentiell zur Zahl der Sätze im Thema wächst. Jeder zusätzliche Satz in einem Thema verdreifacht die Anzahl der möglichen Theorien. Das kommt daher, dass ein Satz oder seine Negation Prinzip einer Theorie sein kann oder er ist nicht dabei. Das sind pro Satz 3 mögliche Werte. Aus diesen Überlegungen leitet sich die Zahl der zu überprüfenden Theorien pro Anpassungsschritt ab: $\lvert T \rvert = 3^n$, wobei $n$ die Zahl der Sätze im Thema ist.
+
+Bei den Überzeugungen sieht es leider nicht besser aus: Auch hier werden analog zu den Theorien alle möglichen Überzeugungen überprüft. Erschwerend kommt hinzu, dass die Menge der Überzeugungen weniger durch Inkonsistenzen aus Inferenzbeziehungen eingeschränkt werden. Weil die Überzeugungen nur \textit{minimal konsistent} sein müssen. Das bedeutet, dass die Menge der Überzeugungen keine direkten Widersprüche (bspw. $\{s1, \neg s1\}$) enthalten darf.
 
 Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung noch. Bei Abbildung \ref{fig:smallset} ist eine sehr kleine Menge von Sätzen abgebildet. Wenn nun \textit{s2} die einzige Überzeugung ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{\{\}, s1, s2, \neg s1, \neg s2, \{s1,s2\}, \{s1,\neg s2\}, \{\neg s1, s2 \}, \{\neg s1, \neg s2 \} \}$. In dieser einfachen Struktur können keine Mengen ausgeschlossen werden. Alle 9 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s3} hinzukäme, müssten 27 Mengen überprüft werden. Bei einem weiteren 81. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht diese Methode unrealistisch in der Benutzung. Ausserdem ist es auffällig, wie schnell und einfach die Anpassung intuitiv gemacht werden kann. Für eine Person ist es auf einen Blick zu erkennen, dass s1 das einzige Prinzip ist, welches infrage kommt. Deshalb muss ein neuer Ansatz entwickelt werden.
 
 \section{Der piecemeal Ansatz}
-\begin{quote}
-    A rule is amended if it yields an inference we are unwilling to accept; an inference is rejected if it violates a rule we are unwilling to amend. \autocite[S.~64]{goodman_fact_1983}
-\end{quote}
 
-%%%%delete me 
-\textit{Hier fehlt eine Beschreibung des Piecemeal Ansatzen in der klassischen Literatur}
-%%%
 
 \subsection{Einzelne Elemente hinzufügen oder entfernen}
-Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Commitments oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im ersten in dieser Arbeit vorgestellten Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Commitments um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
+Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
 
 \paragraph{Anpassung der Theorie}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
@@ -141,18 +186,15 @@ Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie f
     
     $$ 
     T_i^*:= \{ T_i \cup s_j: s_j \in S\}
-    %T_i^*:= \forall s \in S : \{T_i \cup s_1, ..., T_i \cup s_{\lvert S \rvert} \}
     $$
     \item \label{1.1} Jede Theorie, die entsteht, wenn man einen einzelnen Satz in $T_i$ negiert, wird $T_i^*$ hinzugefügt. 
     $$
     T_i^* \cup \{ (T_i \setminus \{e_j\}) \cup \neg e_j: e_j \in T_i\}
-    %T_i^* \bigcup \forall e \in T_i : \{(T_i \setminus \{e_1\})\cup \{\neg e_1\}, ..., T_i \setminus \{e_{\lvert T_i \rvert}\})\cup \{\neg e_{\lvert T_i \rvert}\}\}
     $$
     \item \label{2} Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt, werden zu $T_i^*$ hinzugefügt.
     
     $$
     T_i^* \cup \{ T_i \setminus \{e_j\}: e_j \in T_i\}
-    %T_i^* \bigcup \forall e \in T_i : \{T_i \setminus \{e_1\}, ..., T_i \setminus \{e_{\lvert T_i \rvert}\}\}
     $$
     
     \item \label{konsistenzfilter} Inkonsistente Mengen werden aus $T_i^*$ entfernt. \ref{konsistenz}
@@ -168,23 +210,33 @@ Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie f
 Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimalkonsistent sein muss.
 \begin{enumerate}
     \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
+    
     $$ 
     C_i^*:= \{ C_i \cup s_j: s_j \in S\}
     $$
-    \item Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert, wird zu $C_i^*$ hinzugefügt.
+    
+    \item Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert, 
+    wird zu $C_i^*$ hinzugefügt.
+    
     $$
     C_i^* \cup \{ (C_i \setminus \{c_j\}) \cup \neg c_j: c_j \in C_i\}
     $$
+    
     \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
+    
     $$
     C_i^* \cup \{ C_i \setminus \{c_j\}: c_j \in C_i\}
     $$
+    
     \item \label{c3} Die Untermengen von $C_i^*$ werden mittels Achievement-Funktion $Z$ überprüft.
     \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_1$ - Ansonsten wird $C_1$ zu $C_{i+1}$.
 \end{enumerate}
 
+\paragraph{Stoppbedingung}
+Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. \textit{\textcolor{red}{Wird noch ausgeführt...}}
+
 \paragraph{Beispiel}
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{classical_initial1}
   \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
@@ -205,31 +257,86 @@ Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schri
  Während des Prozesses mussten in der ersten Änderung 14 Theorien und in der zweiten und dritten Änderung neun Theorien überprüft und verglichen werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $3^7$ Theorien (ohne Berücksichtigung der inkonsistenten Theorien) überprüft und verglichen werden. In der Anpassung der Überzeugungen müssen bei jedem Schritt immer $2t + 1$ Überzeugungen überprüft werden. Wobei $t$ der Anzahl von Sätzen im Topic entspricht. Für das Beispiel heisst das $15$ Überprüfungen pro Anpassung. Beim traditionellen Ansatz müssen bei jedem Schritt wieder $3^7$ Überzeugungen überprüft werden. Wichtig für die Frage, ob der traditionelle Ansatz wirklich weniger effizient ist, ist neben der Anzahl zu überprüfenden Mengen pro Schritt auch die Anzahl der Schritte. Diese wäre für unser Beispiel für das traditionelle Modell 4 Schritte (2 für die Überzeugungen und 2 für die Theorien), für den neuen Ansatz sind es 7 Schritte. Die Anzahl Schritte ist 1.75 Mal höher, aber die Anzahl von Rechenschritten pro Schritt ist $145.8$ Mal höher. Wenn sich bei weiteren Kompositionen ähnliche Werte ergeben, ist die neue Methode der traditionellen vorzuziehen. Ausserdem gilt es zu überprüfen, ob die Methode globale Optima erreicht.
  % Run the numbers again...
 
-\subsection{Analyse der Inferenzbeziehungen}
-Eine weitere Idee für eine intuitivere und nachvollziehbarere Umsetzung der Anpassungen ist die Analyse der gegebenen Inferenzbeziehungen. Aufgrund der Inferenzbeziehungen zwischen Sätzen, kann klug entschieden werden, welche Sätze sich eher als Theorien lohnen. Auch für die Anpassung der Überzeugungen kann es hilfreich sein, zu analysieren, welche Inferenzbeziehungen die zuletzt hinzugefügten Prinzipien haben.
+\section{Ensemblestudie}
 
-\textcolor{red}{\textit{Es gilt zu beachten, dass bei der Analyse der Inferenzbeziehungen ignoriert wird, dass Sätze auch Prinzip für sich selbst sein können.}}
+Um zu untersuchen, wie sich der Piecemeal-Ansatz gegenüber dem Standard-Ansatz verhält, habe ich ein umfangreiches Datenset generiert und dieses analysiert. Ich werde in diesem Abschnitt kurz darauf eingehen, wie das Datenset aufgebaut ist und dann erklären, was ich untersucht habe und was die Erkenntnisse sind. Generiert wurden die Daten alle mittels einer Python-Bibliothek, wie von den Mitgliedern des Forschungsprojekts \textit{How Far Does Reflective Equilibrium Take Us?} erarbeitet wurde.
+
+\paragraph{Die Bewertungskriterien} Wie gut sind die Fixpunkte? 
+
+\paragraph{Aufbau} Ich habe 2400 RE-Prozesse generiert. Davon sind die Hälfte Prozesse nach dem neuen Piecemeal-Ansatz und die andere Hälfte nach dem Standard-Ansatz. Angefangen bei einer Menge von fünf Sätzen im Satzpool wurden jeweils 50 zufällige Argumentstrukturen generiert und mit 2 zufällig generierten Mengen von initialen Überzeugungen kombiniert. Der Prozess wird wiederholt und diesmal werden auch Argumente mit bis zu zwei Prämissen erlaubt. Dies wurde für Poolgrössen von 5 bis 10 wiederholt, was 1200 initiale Strukturen ergibt. Alle wurden mit dem Standard-Prozess und mit dem Piecemeal-Vorschlag untersucht, was dann 2400 RE-Prozesse ergibt.
+
+\paragraph{Anzahl der initialen Überzeugungen} Es fällt auf, dass drei Viertel der Prozesse, welche dieselben initialen Strukturen haben, unterschiedliche Fixpunkte erreichen. Wenn man davon ausgeht, dass der Standard-Ansatz eigentlich immer ein globales Optimum erreicht, würde das bedeuten, dass der Piecemeal-Ansatz in diesen Fällen bei einem Fixpunkt stehen bleibt, der einen schlechteren Wert bei der Funktion Z erreicht. Dass dies nicht unbedingt so ist, lässt sich in Grafik \ref{fig:höheres Achievement aufgeteilt nach initialen Commitments} zeigen: Je nachdem, wie viele initiale Überzeugungen in der initialen Struktur waren, kann der Piecemeal-Ansatz durchaus bessere Ergebnisse erreichen. Bei nur einem oder zwei initialen Überzeugungen funktioniert der Standard-Ansatz immer besser. Je höher die Zahl der Überzeugungen am Anfang des Prozesses aber wird, umso besser funktioniert auch der Piecemeal-Ansatz.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach initialen Commitments}
+  \caption{höheres Achievement aufgeteilt nach initialen Überzeugungen A\label{fig:höheres Achievement aufgeteilt nach initialen Commitments}}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse A\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}}
+\end{figure}
+
+
+In den Grafiken \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse} und \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen} ist erkennbar, dass der Piecemeal-Ansatz deutlich besser funktioniert, wenn die Argumente 2 Prämissen haben können und die grösse des Satzpools etwas grösser ist als nur 5. Wie dies sein kann, möchte ich anhand eines Schritt-für-Schritt-Beispiels einer initialen Struktur zeigen. Welche zufällig generiert wurde:
+
+\textit{\textcolor{red}{Hier fehlt das Schritt-für-Schritt-Beispiel}}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{erreichen eines Globalen Optimums aufgeteilt nach Poolsize}
+  \caption{erreichen eines Globalen Optimums aufgeteilt nach Poolsize\label{fig:GlobOptPoolsize}}
+\end{figure}
+
+
+Wenn man Grafik \ref{fig:GlobOptPoolsize} analysiert, so erkennt man, dass die Standard-Variante zwar meistens die Nase vorn hat, dies jedoch nur, weil er bei Argumenten mit nur einer Prämisse wesentlich besser funktioniert. So erreicht er denn bei Argumenten mit einer Prämisse und einer Poolgrösse von 5 zu 80\% das globale Optimum im Vergleich zu Argumenten mit einer Prämisse, wo es nur 56\% sind. Schaut man sich die zweiprämissigen Argumente an, so erreicht Piecemeal schon ab einer Poolgrösse von 6 öfter ein globales Optimum.
+
+Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes hat, kann ich nicht mit Sicherheit sagen. Was die Analyse allerdings zeigt, sofern meine Daten richtig sind, dass der Standard-Ansatz nicht so robust ist, wie \autocite[S.~17-18]{beisbart_making_2015} behaupten. In ihren untersuchungen verändern \citeauthor{beisbart_making_2015} die Gewichtungen der Achievmentfunktion und die Überzeugungen, nicht aber die Argumentstruktur und die Menge der Sätze. Die erreichten 95\% von Prozessen, die ein globales Optimum erreichen, kann ich mit den von mir erstellten Daten nicht annähernd nachweisen.
+
+\textit{\textcolor{red}{Ich werde noch mehr dazu erzählen wie die Grafiken entstanden sind. Dabei werde ich nicht auf Programmcode zurückgreifen, sondern einfach erklären, welche Werte ich wann wie gefiltert habe, damit der Leser verstehen kann, was die Diagramme darstellen.}}
+
+Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
+
+\section{Fazit}
+
+Aufwand von Piecemeal viel besser... 
+
+
+\newpage
+\printbibliography
+
+\newpage
+
+\section{Anhang}
+\subsection{ Vorschlag für eine erste Theorie: Analyse der Inferenzbeziehungen}
+Im traditionellen Ansatz wird im initialen Zustand die leere Menge als erste Theorie angenommen. Ich möchte einen alternativen Vorschlag vorstellen, wie eine erste Theorie gefunden werden könnte. Er entstand durch die Überlegung, wie Personen den Prozess wohl intuitiv durchführen würden. Die Idee ist, dass man sich die Inferenzbeziehungen der Argumente anschaut, welche die ersten Überzeugungen beinhalten. Aufgrund der Inferenzbeziehungen zwischen Sätzen, kann klug entschieden werden, welche Sätze sich eher als Theorien lohnen. Es gilt zu beachten, dass bei der Analyse der Inferenzbeziehungen ignoriert wird, dass Sätze auch Prinzip für sich selbst sein können. Dies dürfte aber kein Problem sein bei der Erstellung einer ersten Theorie.
 
 \paragraph{Anpassung der Theorie}
-Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst. Hierbei entspricht $z$ der Anzahl Durchläufe und $c_a$ der aktuell ausgewählten Überzeugung. 
+Ausgehend von der Menge von Überzeugungen $C_0$ wird eine Theorie $T_0$ wie folgt erzeugt. Hierbei entspricht $z$ der Anzahl Durchläufe und $c_a$ der aktuell ausgewählten Überzeugung. 
 \begin{enumerate}
-    \item \label{i1} Die erste Überzeugung aus $C_i$ wird ausgewählt: $c_a = c_0$ (Index 0)
-    \item \label{i2} Falls die Menge $S_z$ leer ist: Für die ausgewählte Überzeugung $c_a$ werden alle Prinzipien gesucht, welche die ausgewählte Überzeugung zum Inhalt haben. Jedes gefundene Prinzip eröffnet eine neue Menge und diese Mengen werden $S_z$ hinzugefügt. Falls $S_z$ nicht leer ist: Jedes für $c_a$ gefundene Prinzip wird zu den Mengen in $S_z$ hinzugefügt, falls die entstehende Menge konsistent ist und das Prinzip nicht schon enthalten ist.
-    \item \label{i3} Falls $c_x$ noch nicht das letzte Element aus $C_i$ ist, wird die nächste Überzeugung aus $C_i$ wird ausgewählt und zu Schritt \ref{i2} gesprungen.
-    \item \label{i4} Falls $z < \lvert C_i \rvert$: Das erste Element in $C_i$ wird nach hinten verschoben. Dabei wird die erste Überzeugung zur letzten. $z$ wird um eins inkrementiert: $z = z + 1$ und zu Schritt \ref{i1} gesprungen. %Achtung: Vielleicht müssen alle Permutationen von C_i geprüft werden? Es macht definitiv einen unterschied... die Frage ist, ob es auch schlechter funktioniert...
-    \textcolor{red}{\textit{Notiz: Hier wird nur das Anfangselement verändert und nicht die Reihenfolge. Ich bin noch nicht sicher, ob wirklich evtl. nicht alle Permutationen der Überzeugungsmenge überprüft werden müsste. Bis jetzt konnte ich mir keine Beispielstruktur ausdenken, bei der es einen Unterschied gemacht hätte. Vielleicht muss man es experimentell zeigen?}}
+    \item \label{i1} Die erste Überzeugung aus $C_0$ wird ausgewählt: $c_a = c_0$ (Index 0)
+    \item \label{i2} Falls die Menge $S_z$ leer ist: Für die ausgewählte Überzeugung $c_a$ werden alle Prinzipien gesucht, aus welchen die ausgewählte Überzeugung folgt. Jedes gefundene Prinzip eröffnet eine neue Menge und diese Mengen werden $S_z$ hinzugefügt. Falls $S_z$ nicht leer ist: Jedes für $c_a$ gefundene Prinzip wird zu den Mengen in $S_z$ hinzugefügt, falls die entstehende Menge konsistent ist und das Prinzip nicht schon enthalten ist.
+    \item \label{i3} Falls $c_x$ noch nicht das letzte Element aus $C_0$ ist, wird die nächste Überzeugung aus $C_0$ wird ausgewählt und zu Schritt \ref{i2} gesprungen.
+    \item \label{i4} Falls $z < \lvert C_i \rvert$: Das erste Element in $C_0$ wird nach hinten verschoben. Dabei wird die erste Überzeugung zur letzten. $z$ wird um eins inkrementiert: $z = z + 1$ und zu Schritt \ref{i1} gesprungen. \textit{ Hier wird nur das Anfangselement verändert und nicht die Reihenfolge. Eventuell müssen alle Permutationen der Überzeugungsmenge überprüft werden. Dies benötigt weitere Nachforschung und übersteigt den Inhalt dieser Arbeit.}
     \item \label{i5} In den Mengen $S_\alpha$ werden die Mengen, welche die gleichen Elemente enthalten zu einer reduziert. Alle $S_\alpha$ Mengen werden mittels Achievement-Funktion $Z$ überprüft.
-    \item \label{i6} Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird die Theorie $T_i$ ersetzen und zu $T_{i+1}$ erklärt, ausser ihr Wert ist kleiner als der Wert von $T_i$. In diesem Fall wird $T_i$ zu $T_{i+1}$ erklärt.
-    %Danach werden zu allen Mengen in den $S_\alpha$ Mengen die Überzeugungen hinzugefügt, die nicht aus anderen Sätzen folgen.% Müssen alleinstehende Überzeugungen überhaupt berücksichtigt werden?
+    \item \label{i6} Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_0$.
 \end{enumerate}
 
-\paragraph{Anpassung der Überzeugungen}
-Ausgehend von einer Theorie $T_i$ werden für $C_i+1$ die Prinzipien und der Inhalt von $T_i$ übernommen.
-Durch diesen Schritt wird immer voller \textit{Account} garantiert, dafür wird $C_0$ aber vernachlässigt und somit \textit{Faithfulness} gefährdet. Es muss durch Experimente gezeigt werden, ob dieser Ansatz zu gleich guten Ergebnissen führt wie der traditionelle Ansatz.
-
 \paragraph{Beispiel}
-Beispielhaft kann auch hier wieder die Struktur, welche auf Abbildung \ref{fig:classset-initial1} illustriert ist, dienen. Im ersten Schritt wählen wir $s3$ und finden $s1$ als mögliches Prinzip für $s3$ im zweiten Schritt. Da $S_0$ noch leer ist, fügen wir $s1$ hinzu. Dann suchen wir ein Prinzip für $s4$, wobei wir wieder auf $s1$ stossen und dieses nicht ein zweites Mal zu $S_0$ hinzufügen. Danach folgt unsere nächste und letzte Überzeugung $s5$. Für $s5$ finden wir nun zwei mögliche Prinzipien: $s1$ und $s2$. Nun ergäben sich zwei Mengen in $S_0$: $\{s1\}$ und $\{s1, s2\}$. Da $\{s1, s2\}$ aber inkonsistent ist, wird sie weggelassen. Als Nächstes starten wir den Prozess erneut, diesmal fangen wir aber mit $s4$ als erster Überzeugung an, für die wir Prinzipien suchen. Der Prozess verläuft analog zum ersten Durchgang, und am Ende haben wir eine Menge $S_1 = \{s1\}$. Für den dritten und letzten Durchgang mit $s5$ als Startüberzeugung ergibt sich aber ein anderes Bild: Zu $S_2$ werden die beiden Prinzipien $s1$ und $s2$ als einzelne Elemente hinzugefügt. Bei der Suche nach einem Prinzip für $s4$ und analog für $s3$ wird jeweils $s1$ gefunden. Zur ersten Menge in $S_2$ wird $s1$ nicht hinzugefügt, weil es schon darin ist, zur zweiten Menge nicht, weil die resultierende Menge $\{s1,s2\}$ inkonsistent wäre. Somit ist $S_1 = \{{s1}, {s2}\}$. Die Mengen in $S_0$, $S_1$ und $S_3$ werden nun zusammengeführt, wobei die Doppelungen wieder gestrichen werden können. Somit ergeben sich folgende Kandidaten, für die ihr $Z$-Wert verglichen werden muss: $\{{s1}, {s2}\}$.
+Beispielhaft kann auch hier wieder die Struktur, welche auf Abbildung \ref{fig:classset-initial1} illustriert ist, dienen. Im ersten Schritt wählen wir $s3$ und finden $s1$ als mögliches Prinzip für $s3$ im zweiten Schritt. Da $S_0$ noch leer ist, fügen wir $s1$ hinzu. Dann suchen wir ein Prinzip für $s4$, wobei wir wieder auf $s1$ stossen und dieses nicht ein zweites Mal zu $S_0$ hinzufügen. Danach folgt unsere nächste und letzte Überzeugung $s5$. Für $s5$ finden wir nun zwei mögliche Prinzipien: $s1$ und $s2$. Nun ergäben sich zwei Mengen in $S_0$: $\{s1\}$ und $\{s1, s2\}$. Da $\{s1, s2\}$ aber inkonsistent ist, wird sie weggelassen. Als Nächstes starten wir den Prozess erneut, diesmal fangen wir aber mit $s4$ als erster Überzeugung an, für die wir Prinzipien suchen. Der Prozess verläuft analog zum ersten Durchgang, und am Ende haben wir eine Menge $S_1 = \{s1\}$. Für den dritten und letzten Durchgang mit $s5$ als Startüberzeugung ergibt sich aber ein anderes Bild: Zu $S_2$ werden die beiden Prinzipien $s1$ und $s2$ als einzelne Elemente hinzugefügt. Bei der Suche nach einem Prinzip für $s4$ und analog für $s3$ wird jeweils $s1$ gefunden. Zur ersten Menge in $S_2$ wird $s1$ nicht hinzugefügt, weil es schon darin ist, zur zweiten Menge nicht, weil die resultierende Menge $\{s1,s2\}$ inkonsistent wäre. Somit ist $S_1 = \{{s1}, {s2}\}$. Die Mengen in $S_0$, $S_1$ und $S_3$ werden nun zusammengeführt, wobei die Doppelungen wieder gestrichen werden können. Somit ergeben sich folgende Kandidaten, für die ihr $Z$-Wert verglichen werden muss: $\{\{s1\}, \{s2\}\}$.
 
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{piecemeal Inferenzanalyse}
 
 Eine interessante Alternative zur Inferenzanalyse ist die Idee, die Anpassung der Theorie auch schrittweise zu machen. Dies würde einerseits einen weiteren piecemeal-Aspekt umsetzen und andererseits das Problem der Notwendigkeit der Permutation der Überzeugungen lösen. Die Theorieanpassung würde wie folgt aussehen:
@@ -242,14 +349,6 @@ Eine interessante Alternative zur Inferenzanalyse ist die Idee, die Anpassung de
     \item Diese Mengen werden mittels Achievement-Funktion $Z$ überprüft.
     \item Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zu $T_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$.
 \end{enumerate}
-
-\newpage
-\printbibliography
-
-\end{document}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{enumerate}
