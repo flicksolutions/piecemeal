@@ -169,12 +169,9 @@ Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung
 \end{figure}
 
 \section{Der piecemeal Ansatz}
-
-
-\subsection{Einzelne Elemente hinzufügen oder entfernen}
 Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
 
-\paragraph{Anpassung der Theorie} \label{T-Anpassung}
+\subsection{Anpassung der Theorie} \label{T-Anpassung}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
 \begin{enumerate}
     \item \label{1} Alle Sätze $s$ des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Theoriekandidaten heisst $T_i^*$. Die Sätze in $S$ sind indexiert.
@@ -197,10 +194,12 @@ Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie f
         T_i^{***} \setminus \{f : f \in T_i^{***} \land f \text{ ist inkonsistent} \}
     $$
     \item \label{3} Für jedes Element der Menge $T_i^{***}$ wird der Wert der Achievement-Funktion $Z$ ermittelt.
-    \item \label{4} Der Theoriekandidat, welcher den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_{i+1}$ erklärt, falls sein $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$.
+    \item \label{4} Der Theoriekandidat, welcher den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_{i+1}$ erklärt, falls sein $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$. Falls mehrere Mengen den gleichen, höheren Wert als $C_i$ erreichen, wird zufällig eine der Mengen ausgewählt.\footnote{Dies ist möglicherweise nicht die Beste Option. Eventuell wäre es ratsamer, an dieser Stelle den RE-Prozess für alle Mengen mit den gleichen $Z$-Werten durchzuführen und somit den Prozess an dieser Stelle zu verzweigen. Das vorgestellte Modell könnte in dieser Weise angepasst werden.}
 \end{enumerate}
 
-\paragraph{Anpassung der Überzeugungen} \label{C-Anpassung}
+\paragraph{Spezialfall} Bei der ersten Theorieanpassung wird immer die leere Menge ausgewählt.\footnote{Dies ist notwendig, da das programmierte Modell so funktioniert}
+
+\subsection{Anpassung der Überzeugungen} \label{C-Anpassung}
 Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimal konsistent sein muss.
 \begin{enumerate}
     \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
@@ -222,13 +221,13 @@ Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schri
     $$
     
     \item \label{c3} Für jedes Element der Menge $C_i^{***}$ wird der Wert der Achievement-Funktion $Z$ ermittelt.
-    \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_1$ - Ansonsten wird $C_i$ zu $C_{i+1}$.
+    \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_i$ - Ansonsten wird $C_i$ zu $C_{i+1}$. Falls mehrere Mengen den gleichen, höheren Wert als $C_i$ erreichen, wird zufällig eine der Mengen ausgewählt.\footnotemark[\value{footnote}]
 \end{enumerate}
 
-\paragraph{Stoppbedingung}
-Die beiden Schritte \hyperref[C-Anpassung]{Überzeugungsanpassung} und \hyperref[T-Anpassung]{Theorieanpassung} werden nacheinander abwechselnd angewendet, bis beide Schritte keine Änderung der Position mehr bringen, bis also $(C_i, T_i) = (C_{i+1}, T_{i+1})$. Wenn also bei Schritt \ref{c4} der Überzeugungsanpassung und Schritt \ref{4} der Theorieanpassung jeweils die bestehende Menge zur neuen Menge wird, weil deren $Z$-Wert höher oder gleich hoch ist, wie jener der Menge mit dem höchsten Wert im aktuellen Schritt, stoppt der Prozess des Angleichens. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben.
+\subsection{Stoppbedingung}
+Die beiden Schritte \hyperref[T-Anpassung]{Theorieanpassung} und \hyperref[C-Anpassung]{Überzeugungsanpassung} werden nacheinander abwechselnd angewendet, bis beide Schritte keine Änderung der Position mehr bringen, bis also $(C_i, T_i) = (C_{i+1}, T_{i+1})$. Wenn also bei Schritt \ref{c4} der Überzeugungsanpassung und Schritt \ref{4} der Theorieanpassung jeweils die bestehende Menge zur neuen Menge wird, weil deren $Z$-Wert höher oder gleich hoch ist, wie jener der Menge mit dem höchsten Wert im aktuellen Schritt, stoppt der Prozess des Angleichens. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben.
 
-\paragraph{Beispiel}
+\subsection{Beispiel}
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{classical_initial1}
@@ -264,8 +263,8 @@ $$
     C_1^{***}:= C_1^{**} \cup \{ \{s4,s5\}, \{s3,s5\}, \{s3,s4\} \}
 $$
  
- Von all den Überzeugungsmengen in $C_1^{***}$ haben folgende 2 Mengen den gleichen Wert der Achievement-Funktion: $\{s3,s4,s6,\neg s2\}$
- Die Überzeugungen werden dahingehend verändert, dass entweder $\neg s6$ oder $\neg s2$ hinzugefügt werden, weil dadurch der Parameter \textit{Account} verbessert wird. Dieser wird bei beiden Änderungen im selben Mass verändert, das heisst, es muss eine Entscheidung getroffen werden. Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $\neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf die Möglichkeit des \textit{Branching} zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
+ Von all den Überzeugungsmengen in $C_1^{***}$ haben folgende 3 Mengen den gleichen Wert der Achievement-Funktion: $\{s3,s4,s6,s1\}$, $\{s3,s4,s6,\neg s2\}$, $\{s3,s4,s6,\neg s6\}$. Ob man also $s1$ zu den weiteren Überzeugungen dazunimmt oder $\neg s2$ oder $\neg s6$ hinzunimmt spielt für die nächste Generation keine Rolle. In allen drei Optionen wird nämlich das Desideratum der Kohärenz etwas besser erfüllt und das Desideratum des Respekts etwas weniger gut, denn wir haben einen Satz in der Überzeugungsmenge, der nicht zur ursprünglichen Überzeugungsmenge gehört. 
+Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $\neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf die Möglichkeit des \textit{Branching} zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
  
  Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten und $\{\neg s1\}$. Hierbei kann $\{s1,s2\}$ und $\{s1,s6\}$ ausgeschlossen werden, weil die Theorien inkonsistent ist. Auch die Theorien aus $s1$ und einem negierten Satz müssen überprüft werden: $\{\{s1,\neg s2\}, \{s1,\neg s7\}, \{s1,\neg s6\}\}$ .Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen.
  
