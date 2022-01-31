@@ -132,21 +132,19 @@ Die Achievement-Funktion untersucht einen epistemischen Zustand auf die Kriterie
 
 \paragraph{Gewichtung} Diese drei Desiderata sind unterschiedlich gewichtet. Dies ist wichtig, da die Desiderata einen epistemischen Zustand oft in unterschiedliche Richtungen ziehen. Beispielsweise wird ein epistemischer Zustand kohärenter, wenn man alle Überzungen entfernt, die nicht Teil des Inhalts sind. Darunter leidet allerdings der Respekt. Deshalb müssen die Desiderata unterschiedlich gewichtet werden, damit überhaupt Fortschritt erzielt werden kann. Ich verwendete für meine Ensemblestudie lediglich die Standard-Gewichte (Kohärenz: 0.35, Respekt: 0.10, Systematizität: 0.55) und werde innerhalb der Arbeit auch nicht weiter auf die Gewichte eingehen. Es sei lediglich vermerkt, dass das Modell verschiedene Gewichtungen der Desiderata erlaubt. \autocite[S.~9]{beisbart_making_2015}
 
-\paragraph{Konsistenz}
-Ich habe bisher den Begriff der Konsistenz schon einige mal verwendet, ohne genau zu definieren, was dieser bedeutet. Das möchte ich nun ändern. Es gibt zwei Arten von Konsistenz:
-
-\textit{\textcolor{red}{Hier folgt noch eine Einführung der fehlenden Begriffe für den folgenden Teil,  wie beispielsweise der Achievement-Funktion. Auch Branching und Konsistenz werden noch als Begriffe eingeführt}}
+\paragraph{Konsistenz\label{konsistenz}}
+Ich habe bisher den Begriff der Konsistenz schon einige mal verwendet, ohne genau zu definieren, was dieser bedeutet. Das möchte ich nun ändern. Konsistenz bedeutet in der Logik, dass eine Menge von Sätzen gleichzeitig wahr sein kann. Dass also aus ihr kein Widerspruch abgeleitet werden kann. In dieser Arbeiten spielen zwei Arten der Konsistenz eine Rolle: minimale Konsistenz und volle Konsistenz. Bei der minimalen Konsistenz wird lediglich gefordert, dass die Menge von Sätzen nicht einen Satz und gleichzeitig dessen Negation enthält. Bei voller Konsistenz, welche von Theorien gefordert wird, werden die inferenziellen Beziehungen von Sätzen miteinbezogen. Wenn also bspw. der Satz $s3$ aus $s1$ folgt und aus $s2$ folgt $\neg s3$, so wäre die Menge von Sätzen ${s1,s2}$ inkonsistent, denn aus ihr folgt $s3$ und $\neg s3$ und dies ist ein Widerspruch. Siehe dazu Abbildung \ref{fig:inconsistency}. Anders ausgedrückt kann man auch sagen, dass wenn von einer Theorie volle Konsistenz gefordert wird, so wird von Ihrem Inhalt minimale Konsistenz gefordert. Im Inhalt dürfen sich keine Sätze finden, deren Negationen sich auch darin finden.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics{figure1}
-  \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
+  \includegraphics{consistence.png}
+  \caption{Möglichkeit der Inkonsistenz\label{fig:inconsistency}}
 \end{figure}
 
 Wenn Überzeugungen im Modell von \citeauthor{beisbart_making_2015} angepasst werden müssen, so funktioniert dies nach einem einfach beschriebenen Rezept:
 
 \begin{quote}
-    [...] the agent replaces her current commitments $C_i$ with those commitments $C_{i+1}$ that score best on the achievement function Z (given T_{i+1}).
+    [...] the agent replaces her current commitments $C_i$ with those commitments $C_{i+1}$ that score best on the achievement function Z (given $T_{i+1}$).
     \autocite[S.~11]{beisbart_making_2015}
 \end{quote}
 
@@ -159,7 +157,10 @@ Die Regel zur Anpassung einer Theorie sieht zwar analog aus, allerdings können 
     \autocite[S.~11]{beisbart_making_2015}
 \end{quote}
 
-Zusätzlich schränken nun die Inferenzbeziehungen zwischen den Sätzen, die Kandidaten ein. Weil Theorien vollständig konsistent sein müssen, darf auch kein Theoriekandidat Inkonsistenzen enthalten. Wenn also eine bspw. der Satz $s3$ aus $s1$ folgt und aus $s2$ folgt $\neg s2$, so kann man auf den Theoriekandidaten ${s1,s2}$ verzichten, denn der Inhalt dieser Theorie wäre ${s1,s2,s3,\neg s3}$. Er enthält also zwei Sätze, die sich widersprechen ($s3$ und $\neg s3$). Somit ist dies gar kein Theoriekandidat.
+Zusätzlich schränken nun die Inferenzbeziehungen zwischen den Sätzen, die Kandidaten ein. Weil Theorien vollständig konsistent sein müssen, darf auch kein Theoriekandidat Inkonsistenzen enthalten.
+Im traditionellen Ansatz werden inkonsistente Mengen vorneweg ausgeschlossen, um später nicht immer wieder einzeln die Konsistenz prüfen zu müssen. Deshalb wird vorab der Inhalt jeder möglichen Theorie ($3^n$) errechnet und abgespeichert. Alle Mengen mit Inhalten, die Widersprüche enthalten, werden ausgeschlossen. Dies bedeutet aber auch, einen zusätzlichen Mehraufwand, weil über alle möglichen Theorien iteriert werden muss.
+
+Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung der Theoriekandidaten noch. Bei Abbildung \ref{fig:smallset} ist eine sehr kleine Menge von Sätzen abgebildet. Wenn nun \textit{s2} die einzige Überzeugung ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{\{\}, s1, s2, \neg s1, \neg s2, \{s1,s2\}, \{s1,\neg s2\}, \{\neg s1, s2 \}, \{\neg s1, \neg s2 \} \}$. In dieser einfachen Struktur können keine Mengen ausgeschlossen werden. Alle 9 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s3} hinzukäme, müssten 27 Mengen überprüft werden. Bei einem weiteren 81. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht diese Methode unrealistisch in der Benutzung. Ausserdem ist es auffällig, wie schnell und einfach die Anpassung intuitiv gemacht werden kann. Für eine Person ist es auf einen Blick zu erkennen, dass s1 das einzige Prinzip ist, welches infrage kommt. Deshalb muss ein neuer Ansatz entwickelt werden.
 
 \begin{figure}[ht]
   \centering
@@ -167,73 +168,65 @@ Zusätzlich schränken nun die Inferenzbeziehungen zwischen den Sätzen, die Kan
   \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
 \end{figure}
 
- Man überprüft jede mögliche, konsistente Theorie. Die Menge dieser Theorien ist vor allem aus der Menge an Sätzen im Thema bestimmt - zu einem kleineren Teil aus den Inferenzbeziehungen zwischen den Sätzen. Je mehr Sätze, umso mehr mögliche Theorien. Das Problem ist, dass die Zahl der möglichen Theorien exponentiell zur Zahl der Sätze im Thema wächst. Jeder zusätzliche Satz in einem Thema verdreifacht die Anzahl der möglichen Theorien. Das kommt daher, dass ein Satz oder seine Negation Prinzip einer Theorie sein kann oder er ist nicht dabei. Das sind pro Satz 3 mögliche Werte. Aus diesen Überlegungen leitet sich die Zahl der zu überprüfenden Theorien pro Anpassungsschritt ab: $\lvert T \rvert = 3^n$, wobei $n$ die Zahl der Sätze im Thema ist.
-
-Bei den Überzeugungen sieht es leider nicht besser aus: Auch hier werden analog zu den Theorien alle möglichen Überzeugungen überprüft. Erschwerend kommt hinzu, dass die Menge der Überzeugungen weniger durch Inkonsistenzen aus Inferenzbeziehungen eingeschränkt werden. Weil die Überzeugungen nur \textit{minimal konsistent} sein müssen. Das bedeutet, dass die Menge der Überzeugungen keine direkten Widersprüche (bspw. $\{s1, \neg s1\}$) enthalten darf.
-
-Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung noch. Bei Abbildung \ref{fig:smallset} ist eine sehr kleine Menge von Sätzen abgebildet. Wenn nun \textit{s2} die einzige Überzeugung ist und man dazu die passende Theorie suchen möchte, so würden folgende Kombinationen überprüft: $\{\{\}, s1, s2, \neg s1, \neg s2, \{s1,s2\}, \{s1,\neg s2\}, \{\neg s1, s2 \}, \{\neg s1, \neg s2 \} \}$. In dieser einfachen Struktur können keine Mengen ausgeschlossen werden. Alle 9 Elemente müssten überprüft werden. Wenn nun ein einziges weiteres Element \textit{s3} hinzukäme, müssten 27 Mengen überprüft werden. Bei einem weiteren 81. Das heisst, der Arbeitsaufwand wächst exponentiell zur Anzahl an Sätzen im System. Dies macht diese Methode unrealistisch in der Benutzung. Ausserdem ist es auffällig, wie schnell und einfach die Anpassung intuitiv gemacht werden kann. Für eine Person ist es auf einen Blick zu erkennen, dass s1 das einzige Prinzip ist, welches infrage kommt. Deshalb muss ein neuer Ansatz entwickelt werden.
-
 \section{Der piecemeal Ansatz}
 
 
 \subsection{Einzelne Elemente hinzufügen oder entfernen}
 Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
 
-\paragraph{Anpassung der Theorie}
+\paragraph{Anpassung der Theorie} \label{T-Anpassung}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
 \begin{enumerate}
-    \item \label{1} Alle Sätze $s$ des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie noch nicht enthalten sind. Die Menge der daraus entstandenen Theorien heisst $T_i^*$. Die Sätze in $S$ sind indexiert.
-    
+    \item \label{1} Alle Sätze $s$ des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Theoriekandidaten heisst $T_i^*$. Die Sätze in $S$ sind indexiert.
     $$ 
-    T_i^*:= \{ T_i \cup s_j: s_j \in S\}
+        T_i^*:= \{ T_i \cup \{s_j\}: (s_j \in S) \land (\neg s_j \not\in T_i) \}
     $$
-    \item \label{1.1} Jede Theorie, die entsteht, wenn man einen einzelnen Satz in $T_i$ negiert, wird $T_i^*$ hinzugefügt. 
+    \item \label{1.1} Jede Menge, die entsteht, wenn man einen einzelnen Satz in $T_i$ negiert wird mit $T_i^*$ vereinigt. Die daraus entstandene Menge heisst $T_i^{**}$.
     $$
-    T_i^* \cup \{ (T_i \setminus \{e_j\}) \cup \neg e_j: e_j \in T_i\}
+        T_i^{**}:= T_i^* \cup \{ (T_i \setminus \{s_j\}) \cup \{\neg s_j\}: s_j \in T_i\}
     $$
-    \item \label{2} Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt, werden zu $T_i^*$ hinzugefügt.
+    \item \label{2} Die Mengen, die entstehen, wenn man einzelne Prinzipien aus $T_i$ entfernt und $T_i^{**}$ werden vereinigt. Die daraus entstandene Menge heisst $T_i^{***}$.
     
     $$
-    T_i^* \cup \{ T_i \setminus \{e_j\}: e_j \in T_i\}
+        T_i^{***}:= T_i^{**} \cup \{ T_i \setminus \{s_j\}: s_j \in T_i\}
     $$
     
-    \item \label{konsistenzfilter} Inkonsistente Mengen werden aus $T_i^*$ entfernt. \ref{konsistenz}
+    \item \label{konsistenzfilter} Inkonsistente Mengen werden aus $T_i^{***}$ entfernt.(Weiteres zur Konsistenz siehe Abschnitt \ref{konsistenz})
     
     $$
-        T_i^* \setminus \{f : f \in T_i^* \land f \text{ ist inkonsistent} \}
+        T_i^{***} \setminus \{f : f \in T_i^{***} \land f \text{ ist inkonsistent} \}
     $$
-    \item \label{3} Die Elemente der Menge der Theorien $T_i^*$ wird mittels Achievement-Funktion $Z$ überprüft.
-    \item \label{4}Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zu $T_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$.
+    \item \label{3} Für jedes Element der Menge $T_i^{***}$ wird der Wert der Achievement-Funktion $Z$ ermittelt.
+    \item \label{4} Der Theoriekandidat, welcher den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_{i+1}$ erklärt, falls sein $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$.
 \end{enumerate}
 
-\paragraph{Anpassung der Überzeugungen}
-Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimalkonsistent sein muss.
+\paragraph{Anpassung der Überzeugungen} \label{C-Anpassung}
+Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimal konsistent sein muss.
 \begin{enumerate}
-    \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
+    \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
     
     $$ 
-    C_i^*:= \{ C_i \cup s_j: s_j \in S\}
+    C_i^*:= \{ C_i \cup \{s_j\}: (s_j \in S) \land (\neg s_j \not\in C_i) \}
     $$
     
-    \item Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert, 
-    wird zu $C_i^*$ hinzugefügt.
+    \item \label{c1.1} Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert wird mit $C_i^*$ vereinigt. Die daraus entstandene Menge heisst $C_i^{**}$.
     
     $$
-    C_i^* \cup \{ (C_i \setminus \{c_j\}) \cup \neg c_j: c_j \in C_i\}
+    C_i^{**}:= C_i^* \cup \{ (C_i \setminus \{c_j\}) \cup \neg c_j: c_j \in C_i\}
     $$
     
-    \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt, werden zu $C_i^*$ hinzugefügt.
+    \item \label{c2} Die Mengen, die entstehen, wenn man einzelne Überzeugungen aus $C_i$ entfernt werden mit $C_i^{**}$ vereinigt.
     
     $$
-    C_i^* \cup \{ C_i \setminus \{c_j\}: c_j \in C_i\}
+    C_i^{***}:= C_i^{**} \cup \{ C_i \setminus \{c_j\}: c_j \in C_i\}
     $$
     
-    \item \label{c3} Die Untermengen von $C_i^*$ werden mittels Achievement-Funktion $Z$ überprüft.
-    \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_1$ - Ansonsten wird $C_1$ zu $C_{i+1}$.
+    \item \label{c3} Für jedes Element der Menge $C_i^{***}$ wird der Wert der Achievement-Funktion $Z$ ermittelt.
+    \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_1$ - Ansonsten wird $C_i$ zu $C_{i+1}$.
 \end{enumerate}
 
 \paragraph{Stoppbedingung}
-Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. \textit{\textcolor{red}{Wird noch ausgeführt...}}
+Die beiden Schritte \hyperref[C-Anpassung]{Überzeugungsanpassung} und \hyperref[T-Anpassung]{Theorieanpassung} werden nacheinander abwechselnd angewendet, bis beide Schritte keine Änderung der Position mehr bringen, bis also $(C_i, T_i) = (C_{i+1}, T_{i+1})$. Wenn also bei Schritt \ref{c4} der Überzeugungsanpassung und Schritt \ref{4} der Theorieanpassung jeweils die bestehende Menge zur neuen Menge wird, weil deren $Z$-Wert höher oder gleich hoch ist, wie jener der Menge mit dem höchsten Wert im aktuellen Schritt, stoppt der Prozess des Angleichens. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben.
 
 \paragraph{Beispiel}
 \begin{figure}[ht]
@@ -242,9 +235,37 @@ Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie s
   \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
 \end{figure}
 
- Als Beispiel für den Ablauf kann die klassische Struktur von \cite{beisbart_making_2015} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Sie ist auf Abbildung \ref{fig:classset-initial1} dargestellt. Die erste Anpassung der Theorie überprüft nun einfach alle einzelnen Sätze $\{s1,...,s7, \neg s1, ..., \neg s7\}$. Derjenige welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_0$.
+ Als Beispiel für den Ablauf kann die klassische Struktur von \cite{beisbart_making_2015} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Sie ist auf Abbildung \ref{fig:classset-initial1} dargestellt. Zur ersten Anpassung der Theorie - Also um $T_1$ zu finden - wird nun die initiale Theorie genommen, welche die leere Menge ist\footnote{Einen Vorschlag für eine bessere initiale Theorie befindet sich \hyperref[better-first-theory]{im Anhang}.}, und ihr werden einzeln alle Sätze des Themas S hinzugefügt.
+ $$
+ T_0: \{\} \longrightarrow T_0^*: \{\{s1\},...,\{s7\}, \{\neg s1\}, ..., \{\neg s7\}\}
+ $$
+ Beim \hyperref[1.1]{zweiten Schritt} kommt keine Menge hinzu, denn in der leeren Menge gibt es keine Sätze, die negiert werden könnten. Auch beim \hyperref[2]{dritten Schritt} kommen keine neuen Sätze hinzu, denn man kann keine Sätze aus der leeren Menge entfernen. Auch im \hyperref[konsistenzfilter]{vierten Schritt} können keine Mengen entfernt werden, denn eine Menge mit einem Element kann nie inkonsistent sein. Die erste Anpassung der Theorie überprüft also einfach alle einzelnen Sätze $\{s1,...,s7, \neg s1, ..., \neg s7\}$. Derjenige, welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_1$.
  
- Die Überzeugungen müssen als Nächstes angepasst werden. Dazu überprüfen wir die Menge von Mengen welche $C_0$ und einen weiteren Satz enthalten. Im Schritt \ref{c1} werden ausserdem alle Mengen erstellt, die entstehen, wenn man einzelne Sätze in $C_0$ negiert, zum Beispiel $\{\lnot s3, s4, s5\}$. Ausserdem überprüfen wir entsprechend Schritt \ref{c2} die Mengen, welche entstehen, wenn man einen einzelnen Satz aus $C_0$ entfernt. Die Überzeugungen werden dahingehend verändert, dass entweder $\neg s6$ oder $\neg s2$ hinzugefügt werden, weil dadurch der Parameter \textit{Account} verbessert wird. Dieser wird bei beiden Änderungen im selben Mass verändert, das heisst, es muss eine Entscheidung getroffen werden. Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $\neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf die Möglichkeit des \textit{Branching} zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
+ Die Überzeugungen müssen als Nächstes angepasst werden. Dazu überprüfen wir die Menge von Mengen welche $C_0$ und einen weiteren Satz enthalten.
+ 
+ \begin{equation} \notag
+ \begin{split}
+ C_1^*: \{\{s3, s4, s5, \textcolor{red}{s1}\}, \{s3, s4, s5, \textcolor{red}{s2}\}, \{s3, s4, s5, \textcolor{red}{s6}\}, \{s3, s4, s5, \textcolor{red}{s7}\}, \\
+ \{s3, s4, s5, \textcolor{red}{\neg s1}\}, \{s3, s4, s5, \textcolor{red}{\neg s2}\}, \{s3, s4, s5, \textcolor{red}{\neg s6}\}, \{s3, s4, s5, \textcolor{red}{\neg s7}\}\}
+ \end{split}
+ \end{equation}
+ 
+ Im Schritt \ref{c1.1} werden dann alle Mengen erstellt, die entstehen, wenn man einzelne Sätze in $C_0$ negiert.
+ 
+ \begin{equation} \notag
+ \begin{split}
+ C_1^{**}: C_1^* \cup \{\{\textcolor{red}{\neg s3}, s4, s5\}, \{s3, \textcolor{red}{\neg s4}, s5\}, \{s3, s4, \textcolor{red}{\neg s5}\}\}
+ \end{split}
+ \end{equation}
+ 
+ Ausserdem überprüfen wir entsprechend Schritt \ref{c2} die Mengen, welche entstehen, wenn man einen einzelnen Satz aus $C_0$ entfernt.
+ 
+$$
+    C_1^{***}:= C_1^{**} \cup \{ \{s4,s5\}, \{s3,s5\}, \{s3,s4\} \}
+$$
+ 
+ Von all den Überzeugungsmengen in $C_1^{***}$ haben folgende 2 Mengen den gleichen Wert der Achievement-Funktion: $\{s3,s4,s6,\neg s2\}$
+ Die Überzeugungen werden dahingehend verändert, dass entweder $\neg s6$ oder $\neg s2$ hinzugefügt werden, weil dadurch der Parameter \textit{Account} verbessert wird. Dieser wird bei beiden Änderungen im selben Mass verändert, das heisst, es muss eine Entscheidung getroffen werden. Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $\neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf die Möglichkeit des \textit{Branching} zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
  
  Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten und $\{\neg s1\}$. Hierbei kann $\{s1,s2\}$ und $\{s1,s6\}$ ausgeschlossen werden, weil die Theorien inkonsistent ist. Auch die Theorien aus $s1$ und einem negierten Satz müssen überprüft werden: $\{\{s1,\neg s2\}, \{s1,\neg s7\}, \{s1,\neg s6\}\}$ .Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen.
  
@@ -316,7 +337,7 @@ Aufwand von Piecemeal viel besser...
 \newpage
 
 \section{Anhang}
-\subsection{ Vorschlag für eine erste Theorie: Analyse der Inferenzbeziehungen}
+\subsection{ Vorschlag für eine erste Theorie: Analyse der Inferenzbeziehungen} \label{better-first-theory}
 Im traditionellen Ansatz wird im initialen Zustand die leere Menge als erste Theorie angenommen. Ich möchte einen alternativen Vorschlag vorstellen, wie eine erste Theorie gefunden werden könnte. Er entstand durch die Überlegung, wie Personen den Prozess wohl intuitiv durchführen würden. Die Idee ist, dass man sich die Inferenzbeziehungen der Argumente anschaut, welche die ersten Überzeugungen beinhalten. Aufgrund der Inferenzbeziehungen zwischen Sätzen, kann klug entschieden werden, welche Sätze sich eher als Theorien lohnen. Es gilt zu beachten, dass bei der Analyse der Inferenzbeziehungen ignoriert wird, dass Sätze auch Prinzip für sich selbst sein können. Dies dürfte aber kein Problem sein bei der Erstellung einer ersten Theorie.
 
 \paragraph{Anpassung der Theorie}
