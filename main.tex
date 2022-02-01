@@ -16,7 +16,8 @@
 \usepackage{amsfonts} %\mathcal
 \usepackage{enumerate} %Für kleine römische Zahlen in Aufzählungen
 \usepackage{hyperref}
-
+\usepackage[normalem]{ulem} %für durchgestrichenen text
+\newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi} %text durchstreichen auch in math-mode
 
 %\usepackage{prettyref}
 %\usepackage{apacite}
@@ -165,11 +166,14 @@ Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung
 \begin{figure}[ht]
   \centering
   \includegraphics{figure1}
-  \caption{eine kleine Menge von Sätzen\label{fig:smallset}}
+  \caption{Eine kleine Menge von Sätzen\label{fig:smallset}}
 \end{figure}
 
 \section{Der piecemeal Ansatz}
-Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen.
+Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen. Im Folgenden werde ich den Prozess, der zum Erreichen eines Überlegungsgleichgewichts führt und seine Einzelteile detailliert erklären.
+
+\subsection{Der Anpassungsprozess}
+Der Ablauf des Prozesses - wie aus einer dialektischen Struktur von Sätzen und einer Menge von Anfangsüberzeugungen ein Überlegungsgleichgewicht entsteht - ist im Grunde genommen nicht anders als der des traditionellen Ansatzes, nur die einzelnen Schritte sind anders definiert. In einem ersten Schritt wird der initiale epistemische Zustand definiert, der aus der ersten Theorie ($T_0$) und den initialen Überzeugungen ($C_0$) besteht. $T_0$ ist als die leere Menge ({}) festgesetzt.\footnote{Einen Vorschlag für eine bessere initiale Theorie befindet sich \hyperref[better-first-theory]{im Anhang}.} $C_0$ ist als Eingabe neben der dialektischen Struktur der Sätze gegeben. Danach wird die bestehende Theorie an die aktuellen Überzeugungen angepasst. Dabei wird die Theorie, welche die höchsten Werte der Desiderata Kohärenz und Systematizität erreicht zur neuen Theorie gewählt, wenn die Werte besser sind, als die der bestehenden Theorie. Im nächsten Schritt wird die Menge der Überzeugungen an die geänderte Theorie angepasst. Dabei wird die Menge der Überzeugungen gewählt, welche die höchsten Werte der Desiderata Kohärenz und Respekt erreicht, sofern die Werte höher sind als bei der alten Menge von Überzeugungen. Die beiden vorhergehenden Schritte werden so lange nacheinander angewendet, bis die Änderungen keine Verbesserung des Wertes der Achievement-Funktion bringt.
 
 \subsection{Anpassung der Theorie} \label{T-Anpassung}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
@@ -196,8 +200,6 @@ Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie f
     \item \label{3} Für jedes Element der Menge $T_i^{***}$ wird der Wert der Achievement-Funktion $Z$ ermittelt.
     \item \label{4} Der Theoriekandidat, welcher den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_{i+1}$ erklärt, falls sein $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$. Falls mehrere Mengen den gleichen, höheren Wert als $C_i$ erreichen, wird zufällig eine der Mengen ausgewählt.\footnote{Dies ist möglicherweise nicht die Beste Option. Eventuell wäre es ratsamer, an dieser Stelle den RE-Prozess für alle Mengen mit den gleichen $Z$-Werten durchzuführen und somit den Prozess an dieser Stelle zu verzweigen. Das vorgestellte Modell könnte in dieser Weise angepasst werden.}
 \end{enumerate}
-
-\paragraph{Spezialfall} Bei der ersten Theorieanpassung wird immer die leere Menge ausgewählt.\footnote{Dies ist notwendig, da das programmierte Modell so funktioniert}
 
 \subsection{Anpassung der Überzeugungen} \label{C-Anpassung}
 Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimal konsistent sein muss.
@@ -230,22 +232,34 @@ Die beiden Schritte \hyperref[T-Anpassung]{Theorieanpassung} und \hyperref[C-Anp
 \subsection{Beispiel}
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=\textwidth]{classical_initial1}
+  \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/reduced_classical.png}
   \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
 \end{figure}
 
- Als Beispiel für den Ablauf kann die klassische Struktur von \cite{beisbart_making_2015} im initialen Zustand mit $C_0 = \{s3, s4, s5\}$ zur Hand genommen werden. Sie ist auf Abbildung \ref{fig:classset-initial1} dargestellt. Zur ersten Anpassung der Theorie - Also um $T_1$ zu finden - wird nun die initiale Theorie genommen, welche die leere Menge ist\footnote{Einen Vorschlag für eine bessere initiale Theorie befindet sich \hyperref[better-first-theory]{im Anhang}.}, und ihr werden einzeln alle Sätze des Themas S hinzugefügt.
- $$
- T_0: \{\} \longrightarrow T_0^*: \{\{s1\},...,\{s7\}, \{\neg s1\}, ..., \{\neg s7\}\}
- $$
- Beim \hyperref[1.1]{zweiten Schritt} kommt keine Menge hinzu, denn in der leeren Menge gibt es keine Sätze, die negiert werden könnten. Auch beim \hyperref[2]{dritten Schritt} kommen keine neuen Sätze hinzu, denn man kann keine Sätze aus der leeren Menge entfernen. Auch im \hyperref[konsistenzfilter]{vierten Schritt} können keine Mengen entfernt werden, denn eine Menge mit einem Element kann nie inkonsistent sein. Die erste Anpassung der Theorie überprüft also einfach alle einzelnen Sätze $\{s1,...,s7, \neg s1, ..., \neg s7\}$. Derjenige, welche alleine den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, weil er alle Überzeugungen rechtfertigt und damit wird $\{s1\}$ zu $T_1$.
+ Als Beispiel für den Ablauf kann die folgende Struktur genommen werden:
+ \begin{enumerate}
+     \item Die Struktur beinhaltet 5 Sätze: $\{s1,...,s5\}$
+     \item Aus $s1$ folgen $s3, s4, s5$.
+     \item Aus $s2$ folgen $\neg s4, s5$
+ \end{enumerate}
  
- Die Überzeugungen müssen als Nächstes angepasst werden. Dazu überprüfen wir die Menge von Mengen welche $C_0$ und einen weiteren Satz enthalten.
+ Die initialen Überzeugungen ($C_0$) definiere ich wie folgt:
+ 
+ $C_0 = \{s3, s4, s5\}$
+ 
+ Eingängiger ist die Struktur und die initialen Bedingungen auf Abbildung \ref{fig:classset-initial1} dargestellt.\footnote{Die Zeichen unter den Satzbezeichnungen sind wie folgt zu deuten: \textit{Position in der Theorie | Position in den Überzeugungen} Dabei steht X für: \textit{Dieser Satz kommt in der Menge nicht vor}. T für \textit{Dieser Satz ist in der Menge} und F für \textit{Die Negation des Satzes ist in der Menge.} Zusätzliche Klammern (()) können vorkommen um anzuzeigen, dass diese Position notwendig ist, um kohärent zu sein.}
+ Unser initialer Epistemischer Zustand $(C_0, T_0)$ ist gegeben durch die leere menge und die oben definierten initialen Überzeugungen. Zur ersten Anpassung der Theorie - Also um $T_1$ zu finden - wird nun die initiale Theorie genommen, und ihr werden einzeln alle Sätze des Themas S hinzugefügt.
+ $$
+ T_0: \{\} \longrightarrow T_0^*: \{\{s1\},...,\{s5\}, \{\neg s1\}, ..., \{\neg s5\}\}
+ $$
+ Beim \hyperref[1.1]{zweiten Schritt} kommt keine Menge hinzu, denn in der leeren Menge gibt es keine Sätze, die negiert werden könnten. Auch beim \hyperref[2]{dritten Schritt} kommen keine neuen Sätze hinzu, denn man kann keine Sätze aus der leeren Menge entfernen. Auch im \hyperref[konsistenzfilter]{vierten Schritt} können keine Mengen entfernt werden, denn eine Menge mit einem Element kann nie inkonsistent sein. Die erste Anpassung der Theorie überprüft also einfach alle einzelnen Sätze $\{s1,...,s7, \neg s1, ..., \neg s7\}$. Derjenige, welche den höchsten Wert von $Z$ erreicht, wird zum einzigen Prinzip. Dies ist $s1$, dessen Inhalt $\{s1,s3,s4,s5,\neg s2\}$ ist. Sie erhält die meisten Punkte im Desiderat Kohärenz, denn Sie enthält alle Überzeugungen im Inhalt und keine der Überzeugungen ist inkonsistent mit der Theorie. Einzige Abzüge in der Kohärenz erhält $\{s1\}$ weil sie viele Sätze impliziert, die gar nicht Teil der Überzeugungen sind: $\{s1, \neg s2\}$ sind im Inhalt, aber nicht in den Überzeugungen. Trotzdem erreicht $\{s1\}$ einen höheren Wert bei $Z$ und wird damit zu $T_1$.
+ 
+ Die Überzeugungen müssen als Nächstes angepasst werden. Dazu überprüfen wir die Menge von Mengen, welche $C_0$ und einen weiteren Satz enthalten.
  
  \begin{equation} \notag
  \begin{split}
- C_1^*: \{\{s3, s4, s5, \textcolor{red}{s1}\}, \{s3, s4, s5, \textcolor{red}{s2}\}, \{s3, s4, s5, \textcolor{red}{s6}\}, \{s3, s4, s5, \textcolor{red}{s7}\}, \\
- \{s3, s4, s5, \textcolor{red}{\neg s1}\}, \{s3, s4, s5, \textcolor{red}{\neg s2}\}, \{s3, s4, s5, \textcolor{red}{\neg s6}\}, \{s3, s4, s5, \textcolor{red}{\neg s7}\}\}
+ C_0^*: \{\{s3, s4, s5, \textcolor{red}{s1}\}, \{s3, s4, s5, \textcolor{red}{s2}\}, \\
+ \{s3, s4, s5, \textcolor{red}{\neg s1}\}, \{s3, s4, s5, \textcolor{red}{\neg s2}\}\}
  \end{split}
  \end{equation}
  
@@ -253,24 +267,31 @@ Die beiden Schritte \hyperref[T-Anpassung]{Theorieanpassung} und \hyperref[C-Anp
  
  \begin{equation} \notag
  \begin{split}
- C_1^{**}: C_1^* \cup \{\{\textcolor{red}{\neg s3}, s4, s5\}, \{s3, \textcolor{red}{\neg s4}, s5\}, \{s3, s4, \textcolor{red}{\neg s5}\}\}
+ C_0^{**}: C_0^* \cup \{\{\textcolor{red}{\neg s3}, s4, s5\}, \{s3, \textcolor{red}{\neg s4}, s5\}, \{s3, s4, \textcolor{red}{\neg s5}\}\}
  \end{split}
  \end{equation}
  
  Ausserdem überprüfen wir entsprechend Schritt \ref{c2} die Mengen, welche entstehen, wenn man einen einzelnen Satz aus $C_0$ entfernt.
  
 $$
-    C_1^{***}:= C_1^{**} \cup \{ \{s4,s5\}, \{s3,s5\}, \{s3,s4\} \}
+    C_0^{***}:= C_0^{**} \cup \{ \{s4,s5\}, \{s3,s5\}, \{s3,s4\} \}
 $$
  
- Von all den Überzeugungsmengen in $C_1^{***}$ haben folgende 3 Mengen den gleichen Wert der Achievement-Funktion: $\{s3,s4,s6,s1\}$, $\{s3,s4,s6,\neg s2\}$, $\{s3,s4,s6,\neg s6\}$. Ob man also $s1$ zu den weiteren Überzeugungen dazunimmt oder $\neg s2$ oder $\neg s6$ hinzunimmt spielt für die nächste Generation keine Rolle. In allen drei Optionen wird nämlich das Desideratum der Kohärenz etwas besser erfüllt und das Desideratum des Respekts etwas weniger gut, denn wir haben einen Satz in der Überzeugungsmenge, der nicht zur ursprünglichen Überzeugungsmenge gehört. 
-Zur Einfachheit des Beispiels gehe ich davon aus, dass zufällig eine die Möglichkeit gewählt wird, $\neg s2$ zu den Überzeugungen hinzuzufügen. Ich komme allerdings im Abschnitt \ref{branching} auf die Möglichkeit des \textit{Branching} zu sprechen. $C_1 = \{s3, s4, s5, \neg s2\}$
+ Von all den Überzeugungsmengen in $C_0^{***}$ haben folgende 3 Mengen den gleichen Wert der Achievement-Funktion: $\{s3,s4,s5,s1\}$, $\{s3,s4,s5,\neg s2\}$. Ob man also $s1$ zu den weiteren Überzeugungen dazunimmt oder $\neg s2$ hinzunimmt, spielt für die nächste Generation keine Rolle. In allen beiden Optionen wird nämlich das Desideratum der Kohärenz etwas besser erfüllt und das Desideratum des Respekts etwas weniger gut, denn wir haben einen Satz in der Überzeugungsmenge, der nicht zur ursprünglichen Überzeugungsmenge gehört. 
+Eine der beiden Möglichkeiten wird nun zufällig ausgewählt. Wir legen uns für das Beispiel fest: $C_1 = \{s3, s4, s5, \neg s2\}$
  
- Bei der zweiten Anpassung der Theorie müssen nun Theorien geprüft werden, welche $s1$ und einen weiteren Satz enthalten und $\{\neg s1\}$. Hierbei kann $\{s1,s2\}$ und $\{s1,s6\}$ ausgeschlossen werden, weil die Theorien inkonsistent ist. Auch die Theorien aus $s1$ und einem negierten Satz müssen überprüft werden: $\{\{s1,\neg s2\}, \{s1,\neg s7\}, \{s1,\neg s6\}\}$ .Ausserdem muss die leere Theorie überprüft werden - denn sie resultiert aus Schritt \ref{2}. Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen.
+ Bei der zweiten Anpassung der Theorie müssen nun folgende Theoriekandidaten geprüft werden:
+\begin{align}
+    T_1^{*}:= &\{\{s1, s3\}, \{s1, s4\}, \{s1, s5\},\stkout{\{s1, s2\}}, \{s1, \neg s2\}, \stkout{\{s1, \neg s3\}, \{s1, \neg s4\}, \{s1, \neg s5\}}\}\\
+    T_1^{**}:= T_1^{*} \cup &\{\{\neg s1\}\}\\
+    T_1^{***}:= T_1^{**} \cup &\{\{\}\}
+\end{align}
+Die durchgestrichenen Kandidaten werden in Schritt \ref{konsistenzfilter} entfernt, weil sie inkonsistent mit $\{s1\}$ sind.
+ Das Resultat ist, dass keine der überprüften Theorien besser ist als $T_1$. Somit wird $T_1$ auch zu $T_2$ übernommen.
  
- Es folgt eine weitere Anpassung der Überzeugungen. Da sich die Theorie nicht verändert hat, liegt auf der Hand, dass das Hinzufügen von $\neg s6$ zu $C_1$ die beste Alternative ist. Somit sieht $C_2$ nun wie folgt aus: $C_2 = \{s3, s4, s5, \neg s2, \neg s6\}$
+ Es folgt eine weitere Anpassung der Überzeugungen. Wir erinnern uns, dass wir im letzten Anpassungsschritt die Wahl zwischen der Hinzufügung von $s1$ zu $C_0$ hatten oder der Hinzufügung von $\neg s2$. Wir hatten und zufällig für die zweite Option entschieden. Da sich die Theorie im letzten Anpassungsschritt nicht verändert hat, liegt auf der Hand, dass das Hinzufügen von $s1$ zu $C_1$ die beste Alternative sein muss. Ich überspringe an dieser Stelle also das aufzeichenn und vergleichen von $C_1^{***}$ und füge $s1$ zu $C_1$ hinzu. Somit sieht $C_2$ nun wie folgt aus: $C_2 = \{s3, s4, s5, \neg s2, s1\}$
  
- Weil $T_2$ mit $T_1$ identisch ist, müssen auch dieselben Theorien überprüft werden. Das Ergebnis wird sich nicht verändern und $T_3$ wird mit $T_2$ gleichgesetzt.
+ Weil $T_2$ mit $T_1$ identisch ist, müssen im nächsten Theorieanpassungsschritt um $T_3$ zu finden auch dieselben Theoriekandidaten überprüft werden. Da die Hinzufügung von $s1$ zu den Überzeugungen optimal für $T_2$ war, kann es keine Theorie geben, die besser passt. Denn wäre das der Fall, so müssten wir in einem der vorherigen Theorieanpassungsschritte eine suboptimale Theorie ausgewählt haben. Das führt mich zur Annahme, dass bei einer dialektischen Struktur mit einder Prämisse, keine weiteren Theorieanpassungsschritte unternommen werden müssen, wenn in einem Schritt keine bessere Theorie gefunden wurde. Dafür benötigt es natürlich einen Beweis oder wenigstens weitere experimentelle Hinweise, deshalb lasse ich dies als Vermutung hier stehen. Für das Beispiel lässt sich aber feststellen, dass es keine bessere Theorie als $\{s1\}$ gibt. $T_3$ ist daher $\{s1\}$.
  
  Es folgt eine letzte Überprüfung der Überzeugungen. Nach dem beschriebenen Rezept wird diese wieder durchgeführt, mit dem Ergebnis, dass es keine Verbesserung gibt und $C_3$ mit $C_4$ gleichgesetzt wird. Damit endet der Prozess mit dem Ergebnis eines Reflective Equilibriums.
  
