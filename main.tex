@@ -126,8 +126,8 @@ Hat man einen initialen epistemischen Zustand, folgt als erster Schritt die Änd
 
 Für die Änderung der Theorie werden verschiedene Theoriekandidaten miteinander verglichen. Ich werde \textit{\textcolor{red}{später}} darauf zu sprechen kommen, wie diese gefunden werden. Die Kandidaten werden mittels einer Achievement-Funktion überprüft.
 
-\paragraph{Die Achievement-Funktion}
-Die Achievement-Funktion untersucht einen epistemischen Zustand auf die Kriterien der \textit{Kohärenz (Account)}, der \textit{Systematizität (Systematicity)} und des \textit{Respekts (Faithfulness)}. \textit{Kohärenz} beschreibt, wie sehr die Theorie die Überzeugungen erklärt. Dabei wird der Wert der Kohärenz verringert, für jede Überzeugung, welche mit der Theorie inkonsistent ist, die nicht im Inhalt der Theorie ist und für jeden Satz im Inhalt der Theorie, welcher keine Überzeugung ist.
+\paragraph{Die Achievement-Funktion} \label{achievement-funktion}
+Die Achievement-Funktion untersucht einen epistemischen Zustand auf die Kriterien der \textit{Kohärenz (Account)}, der \textit{Systematizität (Systematicity)} und des \textit{Respekts (Faithfulness)}. \textit{Kohärenz} beschreibt, wie sehr die Theorie die Überzeugungen erklärt. Dabei wird der Wert der Kohärenz verringert, für jede Überzeugung, welche mit der Theorie inkonsistent ist, für jede, die nicht im Inhalt der Theorie ist und für jeden Satz im Inhalt der Theorie, welcher keine Überzeugung ist. Vor allem dieser letzte Punkt scheint etwas kontraintuitiv. Warum sollte es schlechter für die Kohärenz sein, wenn eine Theorie mehr erklärt, als die gesuchten Überzeugungen? \citeauthor{beisbart_making_2021} erklären dies damit, dass dies einen Druck dahingehend erzeugt, dass die Überzeugungen alle Sätze im Inhalt der Theorie bei den Anpassungsschritten der Überzeugungen aufnehmen.
 \textit{Systematizität} bezieht sich nur auf die Theorie eines epistemischen Zustandes. Je mehr Sätze im Inhalt einer Theorie sind im Verhältnis zu den Sätzen in der Theorie, umso systematischer ist die Theorie. Eine Theorie mit einem Satz, welcher vier Sätze im Inhalt der Theorie hat, ist also systematischer, als eine Theorie, mit einem Satz, welche nur sich selbst im Inhalt der Theorie hat.
 \textit{Respekt} bezieht sich nur auf die Überzeugungen eines epistemischen Zustandes. Der Respekt der Überzeugungen wird schlechter, für jede initiale Überzeugung, welche negiert in den Überzeugungen vorkommt und für jede initiale Überzeugung, die nicht vorkommt.
 
@@ -175,12 +175,12 @@ Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegends
 \subsection{Der Anpassungsprozess}
 Der Ablauf des Prozesses - wie aus einer dialektischen Struktur von Sätzen und einer Menge von Anfangsüberzeugungen ein Überlegungsgleichgewicht entsteht - ist im Grunde genommen nicht anders als der des traditionellen Ansatzes, nur die einzelnen Schritte sind anders definiert. In einem ersten Schritt wird der initiale epistemische Zustand definiert, der aus der ersten Theorie ($T_0$) und den initialen Überzeugungen ($C_0$) besteht. $T_0$ ist als die leere Menge ({}) festgesetzt.\footnote{Einen Vorschlag für eine bessere initiale Theorie befindet sich \hyperref[better-first-theory]{im Anhang}.} $C_0$ ist als Eingabe neben der dialektischen Struktur der Sätze gegeben. Danach wird die bestehende Theorie an die aktuellen Überzeugungen angepasst. Dabei wird die Theorie, welche die höchsten Werte der Desiderata Kohärenz und Systematizität erreicht zur neuen Theorie gewählt, wenn die Werte besser sind, als die der bestehenden Theorie. Im nächsten Schritt wird die Menge der Überzeugungen an die geänderte Theorie angepasst. Dabei wird die Menge der Überzeugungen gewählt, welche die höchsten Werte der Desiderata Kohärenz und Respekt erreicht, sofern die Werte höher sind als bei der alten Menge von Überzeugungen. Die beiden vorhergehenden Schritte werden so lange nacheinander angewendet, bis die Änderungen keine Verbesserung des Wertes der Achievement-Funktion bringt.
 
-\subsection{Anpassung der Theorie} \label{T-Anpassung}
+\subsubsection{Anpassung der Theorie} \label{T-Anpassung}
 Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie folgt angepasst: 
 \begin{enumerate}
     \item \label{1} Alle Sätze $s$ des Themas $S$ (auch die Negationen) werden einzeln zu der Menge von Prinzipien in $T_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Theoriekandidaten heisst $T_i^*$. Die Sätze in $S$ sind indexiert.
     $$ 
-        T_i^*:= \{ T_i \cup \{s_j\}: (s_j \in S) \land (\neg s_j \not\in T_i) \}
+        T_i^*:= \{ T_i \cup \{s_j\}: (s_j \in \{S \setminus T_i\}) \land (\neg s_j \not\in T_i) \}
     $$
     \item \label{1.1} Jede Menge, die entsteht, wenn man einen einzelnen Satz in $T_i$ negiert wird mit $T_i^*$ vereinigt. Die daraus entstandene Menge heisst $T_i^{**}$.
     $$
@@ -201,13 +201,13 @@ Ausgehend von einer Menge von Überzeugungen $C_i$ wird eine Theorie $T_i$ wie f
     \item \label{4} Der Theoriekandidat, welcher den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_{i+1}$ erklärt, falls sein $Z$-Wert auch grösser ist als jener von $T_i$ - Ansonsten wird $T_i$ zu $T_{i+1}$. Falls mehrere Mengen den gleichen, höheren Wert als $C_i$ erreichen, wird zufällig eine der Mengen ausgewählt.\footnote{Dies ist möglicherweise nicht die Beste Option. Eventuell wäre es ratsamer, an dieser Stelle den RE-Prozess für alle Mengen mit den gleichen $Z$-Werten durchzuführen und somit den Prozess an dieser Stelle zu verzweigen. Das vorgestellte Modell könnte in dieser Weise angepasst werden.}
 \end{enumerate}
 
-\subsection{Anpassung der Überzeugungen} \label{C-Anpassung}
+\subsubsection{Anpassung der Überzeugungen} \label{C-Anpassung}
 Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schritt \ref{konsistenzfilter} kann ausgelassen werden, da die Menge von Überzeugungen nur minimal konsistent sein muss.
 \begin{enumerate}
     \item \label{c1} Alle Sätze des Themas $S$ werden einzeln zu der Menge von Überzeugungen in $C_i$ hinzugefügt, falls sie oder ihre Negationen noch nicht enthalten sind. Die Menge der daraus entstandenen Mengen von Überzeugungen heisst $C_i^*$. Die Sätze in $S$ sind indexiert.
     
     $$ 
-    C_i^*:= \{ C_i \cup \{s_j\}: (s_j \in S) \land (\neg s_j \not\in C_i) \}
+    C_i^*:= \{ C_i \cup \{s_j\}: (s_j \in \{ S \setminus C_i \}) \land (\neg s_j \not\in C_i) \}
     $$
     
     \item \label{c1.1} Jede Menge von Sätzen, die entsteht, wenn man einen einzelnen Satz in $C_i$ negiert wird mit $C_i^*$ vereinigt. Die daraus entstandene Menge heisst $C_i^{**}$.
@@ -226,11 +226,15 @@ Ganz analog läuft die Überzeugungsanpassung an die Theorie $T_i$. Einzig Schri
     \item \label{c4}Die Menge von Überzeugungen, welche den höchsten Wert bei $Z$ erreicht, wird zu $C_{i+1}$ erklärt, falls ihr $Z$-Wert auch grösser ist als jener von $C_i$ - Ansonsten wird $C_i$ zu $C_{i+1}$. Falls mehrere Mengen den gleichen, höheren Wert als $C_i$ erreichen, wird zufällig eine der Mengen ausgewählt.\footnotemark[\value{footnote}]
 \end{enumerate}
 
-\subsection{Stoppbedingung}
+\subsubsection{Stoppbedingung}
 Die beiden Schritte \hyperref[T-Anpassung]{Theorieanpassung} und \hyperref[C-Anpassung]{Überzeugungsanpassung} werden nacheinander abwechselnd angewendet, bis beide Schritte keine Änderung der Position mehr bringen, bis also $(C_i, T_i) = (C_{i+1}, T_{i+1})$. Wenn also bei Schritt \ref{c4} der Überzeugungsanpassung und Schritt \ref{4} der Theorieanpassung jeweils die bestehende Menge zur neuen Menge wird, weil deren $Z$-Wert höher oder gleich hoch ist, wie jener der Menge mit dem höchsten Wert im aktuellen Schritt, stoppt der Prozess des Angleichens. Dadurch wird garantiert, dass der Prozess aufhört, wenn ein Fixpunkt erreicht wurde. Die Stoppbedingung ist dieselbe wie \autocite[S. 11]{beisbart_making_2015} sie schon definiert haben.
 
 \subsection{Aufwand}
 Allgemein lässt sich sagen, dass in Schritt 1 der beiden Anpassungen immer $\lvert S \rvert - 2\lvert C_i/T_i \rvert$ Kandidaten hinzukommen. Denn wenn $C_i/T_i$ einen Satz enthält, kann er und seine Negation nicht mehr hinzugefügt werden. In Schritt 2 \& 3 kommen hingegen jeweils $\lvert C_i \rvert / \lvert T_i \rvert$ Kandidaten hinzu. Das führt dazu, dass in jedem Anpassungsschritt insgesamt $\lvert S \rvert$ Kandidaten hinzugefügt werden. Bei den Theorieanpassungen, werden allerdings nichtkonsistente Mengen wieder entfernt. Somit wächst der Aufwand für die Überprüfung der Mengen pro Schritt linear zur Mächtigkeit von $S$. Im Vergleich zum exponentiellen Wachstum im traditionellen Ansatz ist dies fast ideal. Die Frage stellt sich nur, ob die Anzahl an Schritten im piecemeal-Ansatz nicht exponentiell wächst. Dies werde ich in Abschnitt \ref{Ensemblestudie} experimentell annähern.
+
+\subsection{Schwierigkeiten}
+Der piecemeal-Ansatz hat wahrscheindlich
+
 
 \subsection{Beispiel}
 \begin{figure}[ht]
@@ -308,7 +312,7 @@ Die durchgestrichenen Kandidaten werden in Schritt \ref{konsistenzfilter} entfer
  Dabei fällt auf, dass mit $C_2^{*}$ keine neuen Kandidaten gefunden werden können. Denn jeder Satz in S kommt schon (evtl. negiert) in $C_2$ vor. Dafür werden in den folgenden Schritten jeweils $\lvert S \rvert = 5$ Mengen gefunden, welche überprüft werden müssen.
  Nach dem beschriebenen Rezept wird diese wieder durchgeführt, mit dem Ergebnis, dass es keine Verbesserung gibt und $C_3$ mit $C_2$ gleichgesetzt wird. Weil bei der letzten Theorieanpassung schon keine bessere Theorie gefunden wurde, ist damit die Stoppbedingung erfüllt und der Prozess endet in einem Reflective Equilibrium.
  
- Während des Prozesses mussten in den drei Theorieanpassungsschritten 22 Theoriekandidaten (30 Kandidaten - 8 inkonsistente Mengen) überprüft werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $3^5$ Theorien (abzüglich der inkonsistenten Theoriekandidaten) überprüft und verglichen werden müssen. In der Anpassung der Überzeugungen im Beispiel müssen bei allen drei Anpassungen insgesamt 30 Überzeugungen überprüft werden. Beim traditionellen Ansatz müssen bei jedem Schritt wieder $3^5$ Überzeugungen überprüft werden. Wichtig für die Frage, ob der traditionelle Ansatz wirklich weniger effizient ist, ist neben der Anzahl zu überprüfenden Mengen pro Schritt auch die Anzahl der Schritte. Diese wäre für unser Beispiel für das traditionelle Modell bei beiden Anpassungen 3 Schritte, für den neuen Ansatz sind es auch je 3 Schritte. Die Anzahl Schritte ist also tatsächlich gleich hoch, aber die Anzahl von hinzugefügten Mengen pro Schritt ist $48.6$ Mal höher. Wenn sich bei weiteren Kompositionen ähnliche Werte ergeben, ist die neue Methode der traditionellen vorzuziehen. Ausserdem gilt es zu überprüfen, ob die Methode globale Optima erreicht. Ausserdem gibt es für piecemeal einige weitere Einschränkungen und Schwierigkeiten auf die ich noch zu sprechen komme.
+ Während des Prozesses mussten in den drei Theorieanpassungsschritten 22 Theoriekandidaten (30 Kandidaten - 8 inkonsistente Mengen) überprüft werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $3^5$ Mengen (abzüglich der inkonsistenten Theoriekandidaten) überprüft und verglichen werden müssen. In der Anpassung der Überzeugungen im Beispiel müssen bei allen drei Anpassungen insgesamt 30 Überzeugungen überprüft werden. Beim traditionellen Ansatz müssen bei jedem Schritt wieder $3^5$ Überzeugungen überprüft werden. Wichtig für die Frage, ob der traditionelle Ansatz wirklich weniger effizient ist, ist neben der Anzahl zu überprüfenden Mengen pro Schritt auch die Anzahl der Schritte. Diese wäre für unser Beispiel für das traditionelle Modell bei beiden Anpassungen 3 Schritte, für den neuen Ansatz sind es auch je 3 Schritte. Die Anzahl Schritte ist also tatsächlich gleich hoch, aber die Anzahl von hinzugefügten Mengen pro Schritt ist $48.6$ mal tiefer im piecemeal Ansatz. Wenn sich bei weiteren Kompositionen ähnliche Werte ergeben, ist die neue Methode der traditionellen vorzuziehen. Ausserdem gilt es zu überprüfen, ob die Methode globale Optima erreicht. Ausserdem gibt es für piecemeal einige weitere Einschränkungen und Schwierigkeiten, auf die ich noch zu sprechen komme.
  % Run the numbers again...
 
 \section{Ensemblestudie} \label{Ensemblestudie}
@@ -330,13 +334,13 @@ Um zu untersuchen, wie sich der Piecemeal-Ansatz gegenüber dem Standard-Ansatz 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}
-  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse A\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf ein-Prämisse-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}
-  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf 2 Prämissen-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}}
 \end{figure}
 
 
@@ -359,6 +363,10 @@ Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes
 
 Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
 
+\subsection{Entdeckte Probleme}
+Beim programmierten Ansatz ergibt sich folgender interessante Spezialfall: Da sich in einem ersten Anpassungsschritt die Menge der Überzeugungen an die initiale Theorie anpasst und die initiale Theorie die leere Menge ist, wir eine zufällige Menge aus der Menge der Überzeugungen entfernt. Wenn die Menge der Überzeugungen nur ein Element enthält, bedeutet das, dass sich danach die leere Menge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus, weil die Systematizität der leeren Menge immer 0 ist und somit irgend ein Satz besser als die leere Menge ist. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist.
+
+
 \section{Fazit}
 
 Aufwand von Piecemeal viel besser... 
@@ -373,19 +381,30 @@ Aufwand von Piecemeal viel besser...
 \subsection{ Vorschlag für eine erste Theorie: Analyse der Inferenzbeziehungen} \label{better-first-theory}
 Im traditionellen Ansatz wird im initialen Zustand die leere Menge als erste Theorie angenommen. Ich möchte einen alternativen Vorschlag vorstellen, wie eine erste Theorie gefunden werden könnte. Er entstand durch die Überlegung, wie Personen den Prozess wohl intuitiv durchführen würden. Die Idee ist, dass man sich die Inferenzbeziehungen der Argumente anschaut, welche die ersten Überzeugungen beinhalten. Aufgrund der Inferenzbeziehungen zwischen Sätzen, kann klug entschieden werden, welche Sätze sich eher als Theorien lohnen. Es gilt zu beachten, dass bei der Analyse der Inferenzbeziehungen ignoriert wird, dass Sätze auch Prinzip für sich selbst sein können. Dies dürfte aber kein Problem sein bei der Erstellung einer ersten Theorie.
 
-\paragraph{Anpassung der Theorie}
-Ausgehend von der Menge von Überzeugungen $C_0$ wird eine Theorie $T_0$ wie folgt erzeugt. Hierbei entspricht $z$ der Anzahl Durchläufe und $c_a$ der aktuell ausgewählten Überzeugung. 
+\paragraph{Generierung der Theorie}
+Ausgehend von der Menge von Überzeugungen $C_0$ wird eine Theorie $T_0$ wie folgt erzeugt. Wann immer eine Menge mit Subskript angegeben wird, ist damit der Wert in der Menge mit dem Index des Subskripts gemeint.
 \begin{enumerate}
-    \item \label{i1} Die erste Überzeugung aus $C_0$ wird ausgewählt: $c_a = c_0$ (Index 0)
-    \item \label{i2} Falls die Menge $S_z$ leer ist: Für die ausgewählte Überzeugung $c_a$ werden alle Prinzipien gesucht, aus welchen die ausgewählte Überzeugung folgt. Jedes gefundene Prinzip eröffnet eine neue Menge und diese Mengen werden $S_z$ hinzugefügt. Falls $S_z$ nicht leer ist: Jedes für $c_a$ gefundene Prinzip wird zu den Mengen in $S_z$ hinzugefügt, falls die entstehende Menge konsistent ist und das Prinzip nicht schon enthalten ist.
-    \item \label{i3} Falls $c_x$ noch nicht das letzte Element aus $C_0$ ist, wird die nächste Überzeugung aus $C_0$ wird ausgewählt und zu Schritt \ref{i2} gesprungen.
-    \item \label{i4} Falls $z < \lvert C_i \rvert$: Das erste Element in $C_0$ wird nach hinten verschoben. Dabei wird die erste Überzeugung zur letzten. $z$ wird um eins inkrementiert: $z = z + 1$ und zu Schritt \ref{i1} gesprungen. \textit{ Hier wird nur das Anfangselement verändert und nicht die Reihenfolge. Eventuell müssen alle Permutationen der Überzeugungsmenge überprüft werden. Dies benötigt weitere Nachforschung und übersteigt den Inhalt dieser Arbeit.}
-    \item \label{i5} In den Mengen $S_\alpha$ werden die Mengen, welche die gleichen Elemente enthalten zu einer reduziert. Alle $S_\alpha$ Mengen werden mittels Achievement-Funktion $Z$ überprüft.
-    \item \label{i6} Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_0$.
+    \item Zu Beginn des Prozesses hat der Index $z$ - welchen wir benötigen werden um durch die Mengen in $P$ zu iterieren - den Wert Null. Und die Menge $S$ - welche unsere Theoriekandidaten enthält - entspricht am Anfang der leeren Menge. $S = \{\}$ $z = 0$
+    \item Die Menge $P$ wird aus $C_0$ generiert. Sie enthält die alle Permutationen von $C_0$. $P$ ist indexiert.
+    $$
+        P := \{ M_i : M_i \text{ ist eine Permutation von } P\}
+    $$
+    \item \label{i1} Die erste Überzeugung aus der Menge in $P_z$ wird ausgewählt: $a = 0$ (Index 0)
+    \item \label{i2} Falls die Menge $S_z$ leer ist: Für die aktuell ausgewählte Überzeugung $P_z^a$ werden alle Prinzipien gesucht, aus welchen die ausgewählte Überzeugung folgt. Jedes gefundene Prinzip eröffnet eine neue Menge und diese Mengen werden $S_z$ hinzugefügt. Falls $S_z$ nicht leer ist: Jedes für $P_z^a$ gefundene Prinzip wird zu den Mengen in $S_z$ hinzugefügt, falls die entstehende Menge konsistent ist und das Prinzip nicht schon enthalten ist.
+    \item \label{i3} Falls $P_z^a$ noch nicht das letzte Element aus $P_z$ ist, wird die nächste Überzeugung aus $P_z$ ausgewählt (indem a um Eins inkrementiert wird) und zu Schritt \ref{i2} gesprungen.
+    $$
+        a = a + 1
+    $$
+    \item \label{i4} Falls $z < \lvert C_i \rvert!$ : $z$ wird um eins inkrementiert: $z = z + 1$ und zu Schritt \ref{i1} gesprungen.
+    \item \label{i5} In den Mengen $S$ werden die Mengen, welche die gleichen Elemente enthalten, zu einer reduziert. Alle $S$ Mengen werden mittels Achievement-Funktion $Z$ überprüft.
+    \item \label{i6} Die Theorie, welche den höchsten Wert bei $Z$ erreicht, wird zur Theorie $T_0$. Falls mehrere Theorien den höchsten Wert erreichen, wird eine Theorie zufällig ausgewählt.
 \end{enumerate}
 
 \paragraph{Beispiel}
 Beispielhaft kann auch hier wieder die Struktur, welche auf Abbildung \ref{fig:classset-initial1} illustriert ist, dienen. Im ersten Schritt wählen wir $s3$ und finden $s1$ als mögliches Prinzip für $s3$ im zweiten Schritt. Da $S_0$ noch leer ist, fügen wir $s1$ hinzu. Dann suchen wir ein Prinzip für $s4$, wobei wir wieder auf $s1$ stossen und dieses nicht ein zweites Mal zu $S_0$ hinzufügen. Danach folgt unsere nächste und letzte Überzeugung $s5$. Für $s5$ finden wir nun zwei mögliche Prinzipien: $s1$ und $s2$. Nun ergäben sich zwei Mengen in $S_0$: $\{s1\}$ und $\{s1, s2\}$. Da $\{s1, s2\}$ aber inkonsistent ist, wird sie weggelassen. Als Nächstes starten wir den Prozess erneut, diesmal fangen wir aber mit $s4$ als erster Überzeugung an, für die wir Prinzipien suchen. Der Prozess verläuft analog zum ersten Durchgang, und am Ende haben wir eine Menge $S_1 = \{s1\}$. Für den dritten und letzten Durchgang mit $s5$ als Startüberzeugung ergibt sich aber ein anderes Bild: Zu $S_2$ werden die beiden Prinzipien $s1$ und $s2$ als einzelne Elemente hinzugefügt. Bei der Suche nach einem Prinzip für $s4$ und analog für $s3$ wird jeweils $s1$ gefunden. Zur ersten Menge in $S_2$ wird $s1$ nicht hinzugefügt, weil es schon darin ist, zur zweiten Menge nicht, weil die resultierende Menge $\{s1,s2\}$ inkonsistent wäre. Somit ist $S_1 = \{{s1}, {s2}\}$. Die Mengen in $S_0$, $S_1$ und $S_3$ werden nun zusammengeführt, wobei die Doppelungen wieder gestrichen werden können. Somit ergeben sich folgende Kandidaten, für die ihr $Z$-Wert verglichen werden muss: $\{\{s1\}, \{s2\}\}$.
+
+\paragraph{Aufwand}
+Da alle Permutationen von $C_0$ durchlaufen werden müssen, umfasst die Methode relativ viele Schritte. Allerdings gäbe es vielleicht eine Möglichkeit, nicht über alle Permutationen iterieren zu müssen und beispielsweise nur mit jedem Element aus $C_0$ einmal anzufangen. Dies bedarf aber weiterer Forschung und ist nicht Gegenstand dieser Arbeit.
 
 \end{document}
 
