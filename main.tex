@@ -381,12 +381,27 @@ Diese Reihenfolge führt dazu, dass immer die Menge der Überzeugungen an die le
   \caption{Struktur, die zu einem nicht nachvollziehbaren Ergebnis führt.\label{fig:wierd}}
 \end{figure}
 
-Betrachten wir die Struktur, die in Abbildung \ref{wierd} abgebildet ist. Wenn die Menge der Überzeugungen nur ein Element enthält - wie in unserem Fall $s4$, bedeutet das, dass sich nach dem ersten Anpassungsschritt an die initiale Theorie - welche die leere Menge ist - die leere Menge auch als Überzeugungsmenge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus. Warum wird nicht die leere Menge beibehalten? Sie erreicht ja volle Kohärenz, denn der Inhalt enthält alle und nur die Sätze in der Überzeugungsmenge - keine. Weil die Systematizität der leeren Menge immer 0 ist und somit irgendein Satz besser ist als die leere Menge. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz Abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist. Sätze, aus denen keine anderen Sätze folgen,  enthalten im Inhalt lediglich sich selbst.
+Betrachten wir die Struktur, die in Abbildung \ref{fig:wierd} abgebildet ist. Wenn die Menge der Überzeugungen nur ein Element enthält - wie in unserem Fall $s4$, bedeutet das, dass sich nach dem ersten Anpassungsschritt an die initiale Theorie - welche die leere Menge ist - die leere Menge auch als Überzeugungsmenge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus. Warum wird nicht die leere Menge beibehalten? Sie erreicht ja volle Kohärenz, denn der Inhalt enthält alle und nur die Sätze in der Überzeugungsmenge - keine. Weil die Systematizität der leeren Menge immer 0 ist und somit irgendein Satz besser ist als die leere Menge. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz Abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist. Sätze, aus denen keine anderen Sätze folgen,  enthalten im Inhalt lediglich sich selbst.
 Die Überzeugungen passen sich danach wieder an den zufällig gewählten Satz an und übernehmen diesen. Das heisst, dass am Ende des Prozesses entweder $s3$, $s4$ oder $s5$ als alleiniger Satz in der Theorie und Überzeugung dastehen. Dies ist enorm kontraintuitiv.
 
 Wie kann das Problem gelöst werden? Die eine offensichtliche Antwort lautet, dass das Programm die Reihenfolge einhalten kann, welche ich in meinem Ansatz definiert habe. Noch viel wichtiger scheint mir aber, eine bessere erste Theorie als die leere Menge zu finden. Ein Ansatz dafür befindet sich im Anhang. Eine andere Möglichkeit wäre es, $T_0 := C_0$ zu setzen.
 
-\paragraph{Globale Optima werden verfehlt} Es ist möglich, sich Strukturen auszudenken, die mit dem piecemeal Ansatz nicht optimal gelöst werden und die der standard Ansatz besser löst. Sehen wir uns folgendes Beispiel an:
+\paragraph{Strukturen mit mehr als einer Prämisse}
+Das Überlegungsgleichgewicht ist durch
+
+\paragraph{Kritik an der Systematizität}
+Das Desideratum der Systematizität ist jenes mit dem höchsten Gewicht. Die Systematizität $S$ einer Theorie $T$ ist gemäss \autocite[S. 465]{beisbart_making_2021} wie folgt definiert:
+$$
+S(T) := 1- \left(\frac{\lvert T \rvert -1}{\lvert \overline{T} \rvert}\right)^2
+$$
+
+Die Anzahl der Sätze in der Theorie ($\lvert T \rvert$) - 1 geteilt durch die Anzahl an Sätzen im Inhalt der Theorie ($\lvert \overline{T} \rvert$) wird monoton fallend normalisiert. Was darauf hinausläuft, dass für Theorien mit einem Satz immer gilt, dass die Systematizität 1 ist. Sie also die volle Punktzahl bekommen. In \autocite[S.~447]{beisbart_making_2021} wird die Systematizität als die Einfachheit einer Theorie beschrieben und ein Beispiel einer Theorie gemacht, welche nur einen Satz enthält, aber im Inhalt viele Sätze hat. Diese sei eine sehr systematische Theorie. Das stimmt zwar, lenkt aber vom Fakt ab, dass es in diesem Fall egal ist, wieviele Sätze eine Theorie mit einem einzigen Prinzip im Inhalt enthält. Die Theorie erhält in jedem Fall volle Systematizität. Dies führt dazu, dass 1007 von den 1200 (84\%) zufällig generierten Kombinationen von initialen Überzeugungen mit einer dialektischen Struktur als optimale Theorie eine Theorie mit nur einem Satz haben. Da muss ich die Frage stellen, ob dieses Desiderat so richtig definiert beziehungsweise gewichtet ist.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/missed_optima.png}
+  \caption{Struktur, bei der piecemeal das Optimum verpasst.\label{fig:missed_optima}}
+\end{figure}
 
 
 \section{Fazit}
