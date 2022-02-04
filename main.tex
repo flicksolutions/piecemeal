@@ -169,7 +169,7 @@ Für eine sehr kleine Menge von Sätzen gelingt eine übersichtliche Darstellung
   \caption{Eine kleine Menge von Sätzen\label{fig:smallset}}
 \end{figure}
 
-\section{Der piecemeal Ansatz}
+\section{Der piecemeal Ansatz} \label{piecemealansatz}
 Wie \autocite[S.25]{beisbart_making_2015} feststellten, scheint die naheliegendste und einfachste Umsetzung eines Piecemeal-Ansatzes zu sein, einzelne Überzeugungen oder Prinzipien in einer vorhandenen Theorie bzw. Menge von Überzeugungen zu ändern bzw. einzelne neue Sätze hinzuzufügen. So geht es im Piecemeal-Ansatz denn auch um die Idee, von den bestehenden Überzeugungen bzw. der bestehenden Theorie auszugehen anstatt agnostisch davon auszugehen, dass sich alle möglichen Theorien gleich gut für die Anpassung eignen. Man ändert die bestehende Theorie bzw. die bestehenden Überzeugungen um ein einzelnes Element ab und sieht, ob diese abgeänderte Theorie bzw. die abgeänderten Überzeugungen besser zu ihrem Gegenstück passen. Im Folgenden werde ich den Prozess, der zum Erreichen eines Überlegungsgleichgewichts führt und seine Einzelteile detailliert erklären.
 
 \subsection{Der Anpassungsprozess}
@@ -364,7 +364,18 @@ Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes
 Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
 
 \subsection{Entdeckte Probleme}
-Beim programmierten Ansatz ergibt sich folgender interessante Spezialfall: Da sich in einem ersten Anpassungsschritt die Menge der Überzeugungen an die initiale Theorie anpasst und die initiale Theorie die leere Menge ist, wir eine zufällige Menge aus der Menge der Überzeugungen entfernt. Wenn die Menge der Überzeugungen nur ein Element enthält, bedeutet das, dass sich danach die leere Menge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus, weil die Systematizität der leeren Menge immer 0 ist und somit irgend ein Satz besser als die leere Menge ist. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist.
+Der Programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Absatz \ref{piecemealansatz} definiert habe. Der wichtigste unterschied ist folgender: Die Reihenfolge in der die Schritte unternommen werden, ist vertauscht. Sie sieht wie folgt aus:
+\begin{enumerate}
+    \item $C_0$ wird definiert aus den eingegebenen Überzeugungen.
+    \item $T_0$ wird als leere Menge definiert.
+    \item Die Überzeugungen passen sich an die aktuelle Theorie an.
+    \item Die Theorie passt sich an die aktuellen Überzeugungen an.
+    \item Die beiden vorherigen Schritte werden wiederholt, bis die Stoppbedingung eintrifft.
+\end{enumerate}
+
+Diese Reihenfolge führt dazu, dass immer die Menge der Überzeugungen an die leere Menge angepasst wird. Was in jedem Fall dazu führt, dass ein zufälliger Satz aus der Menge der Überzeugungen gestrichen wird. Dies kann natürlich nur hinderlich sein. Im besten Fall führt es zu einigen zusätzlichen Anpassungsschritten, im schlechtesten Fall zu einem intuitiv nicht nachvollziehbaren Ergebnis:
+
+Betrachten wir die Struktur, die in Abbildung \ref{wierdstructure} abgebildet ist. Wenn die Menge der Überzeugungen nur ein Element enthält, bedeutet das, dass sich danach die leere Menge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus, weil die Systematizität der leeren Menge immer 0 ist und somit irgend ein Satz besser als die leere Menge ist. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist.
 
 
 \section{Fazit}
