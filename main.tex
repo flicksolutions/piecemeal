@@ -240,7 +240,7 @@ Der piecemeal-Ansatz hat wahrscheindlich
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/reduced_classical.png}
-  \caption{Die klassische Struktur im initialen Zustand A\label{fig:classset-initial1}}
+  \caption{Beispielstruktur\label{fig:classset-initial1}}
 \end{figure}
 
  Als Beispiel für den Ablauf kann die folgende Struktur genommen werden:
@@ -364,7 +364,7 @@ Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes
 Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
 
 \subsection{Entdeckte Probleme}
-Der Programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Absatz \ref{piecemealansatz} definiert habe. Der wichtigste unterschied ist folgender: Die Reihenfolge in der die Schritte unternommen werden, ist vertauscht. Sie sieht wie folgt aus:
+\paragraph{Falsche Reihenfolge der Anpassungen} Der Programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Absatz \ref{piecemealansatz} definiert habe. Der wichtigste unterschied ist folgender: Die Reihenfolge in der die Schritte unternommen werden, ist vertauscht. Sie sieht wie folgt aus:
 \begin{enumerate}
     \item $C_0$ wird definiert aus den eingegebenen Überzeugungen.
     \item $T_0$ wird als leere Menge definiert.
@@ -373,9 +373,20 @@ Der Programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Ab
     \item Die beiden vorherigen Schritte werden wiederholt, bis die Stoppbedingung eintrifft.
 \end{enumerate}
 
-Diese Reihenfolge führt dazu, dass immer die Menge der Überzeugungen an die leere Menge angepasst wird. Was in jedem Fall dazu führt, dass ein zufälliger Satz aus der Menge der Überzeugungen gestrichen wird. Dies kann natürlich nur hinderlich sein. Im besten Fall führt es zu einigen zusätzlichen Anpassungsschritten, im schlechtesten Fall zu einem intuitiv nicht nachvollziehbaren Ergebnis:
+Diese Reihenfolge führt dazu, dass immer die Menge der Überzeugungen an die leere Menge angepasst wird. Was in jedem Fall dazu führt, dass ein zufälliger Satz aus der Menge der Überzeugungen gestrichen wird. Dies kann natürlich nur hinderlich sein. Im besten Fall führt es zu einigen zusätzlichen Anpassungsschritten, im schlechtesten Fall zu einem intuitiv nicht nachvollziehbaren Ergebnis.
 
-Betrachten wir die Struktur, die in Abbildung \ref{wierdstructure} abgebildet ist. Wenn die Menge der Überzeugungen nur ein Element enthält, bedeutet das, dass sich danach die leere Menge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus, weil die Systematizität der leeren Menge immer 0 ist und somit irgend ein Satz besser als die leere Menge ist. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/wierd.png}
+  \caption{Struktur, die zu einem nicht nachvollziehbaren Ergebnis führt.\label{fig:wierd}}
+\end{figure}
+
+Betrachten wir die Struktur, die in Abbildung \ref{wierd} abgebildet ist. Wenn die Menge der Überzeugungen nur ein Element enthält - wie in unserem Fall $s4$, bedeutet das, dass sich nach dem ersten Anpassungsschritt an die initiale Theorie - welche die leere Menge ist - die leere Menge auch als Überzeugungsmenge ergibt. An die leere Menge passt sich dann die leere Menge der Theorie an und wählt einen zufälligen Satz, aus dem keine anderen Sätze folgen, aus. Warum wird nicht die leere Menge beibehalten? Sie erreicht ja volle Kohärenz, denn der Inhalt enthält alle und nur die Sätze in der Überzeugungsmenge - keine. Weil die Systematizität der leeren Menge immer 0 ist und somit irgendein Satz besser ist als die leere Menge. Warum sollen aus dem Satz keine anderen Sätze folgen? Weil, wie im Absatz \ref{achievement-funktion} erklärt, es in der Kohärenz Abzüge gibt, für jeden Satz im Inhalt der Theorie, welcher nicht auch in den Überzeugungen enthalten ist. Sätze, aus denen keine anderen Sätze folgen,  enthalten im Inhalt lediglich sich selbst.
+Die Überzeugungen passen sich danach wieder an den zufällig gewählten Satz an und übernehmen diesen. Das heisst, dass am Ende des Prozesses entweder $s3$, $s4$ oder $s5$ als alleiniger Satz in der Theorie und Überzeugung dastehen. Dies ist enorm kontraintuitiv.
+
+Wie kann das Problem gelöst werden? Die eine offensichtliche Antwort lautet, dass das Programm die Reihenfolge einhalten kann, welche ich in meinem Ansatz definiert habe. Noch viel wichtiger scheint mir aber, eine bessere erste Theorie als die leere Menge zu finden. Ein Ansatz dafür befindet sich im Anhang. Eine andere Möglichkeit wäre es, $T_0 := C_0$ zu setzen.
+
+\paragraph{Globale Optima werden verfehlt} Es ist möglich, sich Strukturen auszudenken, die mit dem piecemeal Ansatz nicht optimal gelöst werden und die der standard Ansatz besser löst. Sehen wir uns folgendes Beispiel an:
 
 
 \section{Fazit}
