@@ -4,6 +4,12 @@
 \usepackage{csquotes}
 \usepackage[ngerman=ngerman-x-latest]{hyphsubst}
 \usepackage{color} %Zum stylen von \def
+\usepackage[dvipsnames]{xcolor}
+
+\definecolor{teal}{RGB}{124,214,253}
+\definecolor{blue}{RGB}{94,100,255}
+\definecolor{purple}{RGB}{116,62,226}
+
 \usepackage{varwidth} %Zum stylen von \def
 \usepackage{etoolbox} %Zum stylen von \def
 \usepackage{amssymb} %Für die Mengensymbole
@@ -313,58 +319,22 @@ Die durchgestrichenen Kandidaten werden in Schritt \ref{konsistenzfilter} entfer
  Nach dem beschriebenen Rezept wird diese wieder durchgeführt, mit dem Ergebnis, dass es keine Verbesserung gibt und $C_3$ mit $C_2$ gleichgesetzt wird. Weil bei der letzten Theorieanpassung schon keine bessere Theorie gefunden wurde, ist damit die Stoppbedingung erfüllt und der Prozess endet in einem Reflective Equilibrium.
  
  Während des Prozesses mussten in den drei Theorieanpassungsschritten 22 Theoriekandidaten (30 Kandidaten - 8 inkonsistente Mengen) überprüft werden.  Im Vergleich zum traditionellen Ansatz, bei dem in jedem Schritt $3^5$ Mengen (abzüglich der inkonsistenten Theoriekandidaten) überprüft und verglichen werden müssen. In der Anpassung der Überzeugungen im Beispiel müssen bei allen drei Anpassungen insgesamt 30 Überzeugungen überprüft werden. Beim traditionellen Ansatz müssen bei jedem Schritt wieder $3^5$ Überzeugungen überprüft werden. Wichtig für die Frage, ob der traditionelle Ansatz wirklich weniger effizient ist, ist neben der Anzahl zu überprüfenden Mengen pro Schritt auch die Anzahl der Schritte. Diese wäre für unser Beispiel für das traditionelle Modell bei beiden Anpassungen 3 Schritte, für den neuen Ansatz sind es auch je 3 Schritte. Die Anzahl Schritte ist also tatsächlich gleich hoch, aber die Anzahl von hinzugefügten Mengen pro Schritt ist $48.6$ mal tiefer im piecemeal Ansatz. Wenn sich bei weiteren Kompositionen ähnliche Werte ergeben, ist die neue Methode der traditionellen vorzuziehen. Ausserdem gilt es zu überprüfen, ob die Methode globale Optima erreicht. Ausserdem gibt es für piecemeal einige weitere Einschränkungen und Schwierigkeiten, auf die ich noch zu sprechen komme.
- % Run the numbers again...
 
 \section{Ensemblestudie} \label{Ensemblestudie}
 
 Um zu untersuchen, wie sich der Piecemeal-Ansatz gegenüber dem Standard-Ansatz verhält, habe ich ein umfangreiches Datenset generiert und dieses analysiert. Ich werde in diesem Abschnitt kurz darauf eingehen, wie das Datenset aufgebaut ist und dann erklären, was ich untersucht habe und was die Erkenntnisse sind. Generiert wurden die Daten alle mittels einer Python-Bibliothek, wie von den Mitgliedern des Forschungsprojekts \textit{How Far Does Reflective Equilibrium Take Us?} erarbeitet wurde.
 
-\paragraph{Die Bewertungskriterien} Wie gut sind die Fixpunkte? 
-
 \paragraph{Aufbau} Ich habe 2400 RE-Prozesse generiert. Davon sind die Hälfte Prozesse nach dem neuen Piecemeal-Ansatz und die andere Hälfte nach dem Standard-Ansatz. Angefangen bei einer Menge von fünf Sätzen im Satzpool wurden jeweils 50 zufällige Argumentstrukturen generiert und mit 2 zufällig generierten Mengen von initialen Überzeugungen kombiniert. Der Prozess wird wiederholt und diesmal werden auch Argumente mit bis zu zwei Prämissen erlaubt. Dies wurde für Poolgrössen von 5 bis 10 wiederholt, was 1200 initiale Strukturen ergibt. Alle wurden mit dem Standard-Prozess und mit dem Piecemeal-Vorschlag untersucht, was dann 2400 RE-Prozesse ergibt.
 
 \paragraph{Anzahl der initialen Überzeugungen} Es fällt auf, dass drei Viertel der Prozesse, welche dieselben initialen Strukturen haben, unterschiedliche Fixpunkte erreichen. Wenn man davon ausgeht, dass der Standard-Ansatz eigentlich immer ein globales Optimum erreicht, würde das bedeuten, dass der Piecemeal-Ansatz in diesen Fällen bei einem Fixpunkt stehen bleibt, der einen schlechteren Wert bei der Funktion Z erreicht. Dass dies nicht unbedingt so ist, lässt sich in Grafik \ref{fig:höheres Achievement aufgeteilt nach initialen Commitments} zeigen: Je nachdem, wie viele initiale Überzeugungen in der initialen Struktur waren, kann der Piecemeal-Ansatz durchaus bessere Ergebnisse erreichen. Bei nur einem oder zwei initialen Überzeugungen funktioniert der Standard-Ansatz immer besser. Je höher die Zahl der Überzeugungen am Anfang des Prozesses aber wird, umso besser funktioniert auch der Piecemeal-Ansatz.
-
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach initialen Commitments}
   \caption{höheres Achievement aufgeteilt nach initialen Überzeugungen A\label{fig:höheres Achievement aufgeteilt nach initialen Commitments}}
 \end{figure}
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}
-  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf ein-Prämisse-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}}
-\end{figure}
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}
-  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf 2 Prämissen-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}}
-\end{figure}
-
-
-In den Grafiken \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse} und \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen} ist erkennbar, dass der Piecemeal-Ansatz deutlich besser funktioniert, wenn die Argumente 2 Prämissen haben können und die grösse des Satzpools etwas grösser ist als nur 5. Wie dies sein kann, möchte ich anhand eines Schritt-für-Schritt-Beispiels einer initialen Struktur zeigen. Welche zufällig generiert wurde:
-
-\textit{\textcolor{red}{Hier fehlt das Schritt-für-Schritt-Beispiel}}
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{erreichen eines Globalen Optimums aufgeteilt nach Poolsize}
-  \caption{erreichen eines Globalen Optimums aufgeteilt nach Poolsize\label{fig:GlobOptPoolsize}}
-\end{figure}
-
-
-Wenn man Grafik \ref{fig:GlobOptPoolsize} analysiert, so erkennt man, dass die Standard-Variante zwar meistens die Nase vorn hat, dies jedoch nur, weil er bei Argumenten mit nur einer Prämisse wesentlich besser funktioniert. So erreicht er denn bei Argumenten mit einer Prämisse und einer Poolgrösse von 5 zu 80\% das globale Optimum im Vergleich zu Argumenten mit einer Prämisse, wo es nur 56\% sind. Schaut man sich die zweiprämissigen Argumente an, so erreicht Piecemeal schon ab einer Poolgrösse von 6 öfter ein globales Optimum.
-
-Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes hat, kann ich nicht mit Sicherheit sagen. Was die Analyse allerdings zeigt, sofern meine Daten richtig sind, dass der Standard-Ansatz nicht so robust ist, wie \autocite[S.~17-18]{beisbart_making_2015} behaupten. In ihren untersuchungen verändern \citeauthor{beisbart_making_2015} die Gewichtungen der Achievmentfunktion und die Überzeugungen, nicht aber die Argumentstruktur und die Menge der Sätze. Die erreichten 95\% von Prozessen, die ein globales Optimum erreichen, kann ich mit den von mir erstellten Daten nicht annähernd nachweisen.
-
-\textit{\textcolor{red}{Ich werde noch mehr dazu erzählen wie die Grafiken entstanden sind. Dabei werde ich nicht auf Programmcode zurückgreifen, sondern einfach erklären, welche Werte ich wann wie gefiltert habe, damit der Leser verstehen kann, was die Diagramme darstellen.}}
-
-Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
-
-\subsection{Entdeckte Probleme}
-\paragraph{Falsche Reihenfolge der Anpassungen} Der Programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Absatz \ref{piecemealansatz} definiert habe. Der wichtigste unterschied ist folgender: Die Reihenfolge in der die Schritte unternommen werden, ist vertauscht. Sie sieht wie folgt aus:
+\subsection{Entdeckte Probleme} \label{found problems}
+\paragraph{Falsche Reihenfolge der Anpassungen} Der programmierte Ansatz funktioniert nicht genau wie der Prozess, den ich in Absatz \ref{piecemealansatz} definiert habe. Der wichtigste Unterschied ist folgender: Die Reihenfolge, in der die Schritte unternommen werden, ist vertauscht. Sie sieht wie folgt aus:
 \begin{enumerate}
     \item $C_0$ wird definiert aus den eingegebenen Überzeugungen.
     \item $T_0$ wird als leere Menge definiert.
@@ -438,6 +408,51 @@ Die Anzahl der Sätze in der Theorie ($\lvert T \rvert$) - 1 geteilt durch die A
   \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/missed_optima.png}
   \caption{Struktur, bei der piecemeal das Optimum verpasst.\label{fig:missed_optima}}
 \end{figure}
+
+
+\subsection{Erreichen des globalen Optimums}
+
+\subsection{Vergleich der Achievements zwischen den Ansätzen}
+
+\subsubsection{zweiprämissige Strukturen}
+
+Ich habe die Vermutung geäussert, dass der piecemeal Ansatz bei Strukturen, die Argumente enthalten, welche zwei oder mehr Prämissen enthalten nicht gut funktioniert. Dazu habe ich die Grafiken \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse} und \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen} erstellt. In \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse} werden die standard und piecemeal Prozesse verglichen. Die \textcolor{teal}{hellblaue Säule} zeigt den Anteil an standard Prozessen, die ihre piecemeal-Partner im Achievement übertrafen. Die \textcolor{blue}{blaue Säule} zeigt den Anteil an piecemeal Prozessen an, die einen höheren Wert der Achievementfunktion erreichten. Die \textcolor{purple}{violetten Säulen} zeigen den Anteil an, bei dem beide Prozesse gleich gute Leistung gezeigt haben.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf ein-Prämisse-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse}}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}
+  \caption{höheres Achievement aufgeteilt nach Poolsize begrenzt auf 2 Prämissen-Strukturen\label{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen}}
+\end{figure}
+
+In den Grafiken \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf eine Prämisse} und \ref{fig:höheres Achievement aufgeteilt nach Poolsize begrenzt auf max 2 Prämissen} ist nun erkennbar, dass der Piecemeal-Ansatz deutlich besser funktioniert, wenn die Argumente 2 Prämissen haben können und die Grösse des Satzpools etwas grösser ist als nur 5. Dies spricht nun stark gegen meine ursprüngliche Vermutung! Ich habe aber mehrere Faktoren ausgemacht, die das Ergebnis erklären könnten. Die meisten Entdeckungen, die ich bis zu diesem Punkt gemacht habe, spielen eine Rolle. Allen voran das Problem mit der Systematizität. Denn, 465 von 594 Strukturen mit mindestens einem Argument, das zwei Prämissen hat, haben ein globales Optimum mit nur einem Satz in der Theorie. Dies entspricht 78\% und damit etwas weniger als dem Schnitt von 83\% von allen Strukturen. Von diesen 465 Prozessen, wird in 228 Fällen mit dem Standardprozess ein Fixpunkt erreicht, der mehr als einen Satz in der Theorie enthält. Das Optimum wird also verfehlt. Demgegenüber stehen lediglich 9 Fälle in der Piecemeal-Variante, in denen das passiert. Zwar erreichen auch 189 der 465 betrachteten piecemeal Prozesse das Globale Optimum nicht, aber trotzdem erklärt dies, die besseren Achievmentwerte sehr gut. Wieso aber erreichen piecemeal Prozesse eher einen Fixpunkt mit nur einem Satz in der Theorie?
+
+\paragraph{leere Anfangstheorie} Dadurch, dass im piecemeal Ansatz die initiale Theorie als leere Menge definiert ist und jeweils nur ein Satz dazu kommt, ist garantiert, dass jeder piecemeal Prozess mindestens einmal im Verlauf des Prozesses eine Theorie mit einem Satz hat. Der in Abschnitt \ref{found problems} beschriebene Fehler in der Reihenfolge der Anwendung im Programm dürfte ausserdem hilfreich sein, auf eine Theorie mit nur einem Satz zu kommen und dabei zu bleiben. Denn dadurch wird ja ein zufälliger Satz der Überzeugungen entfernt und aus weniger Überzeugungen folgt auch, das eher weniger Sätze in der Theorie sind.
+
+
+----------------------
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{erreichen eines Globalen Optimums aufgeteilt nach Poolsize}
+  \caption{erreichen eines Globalen Optimums aufgeteilt nach Poolsize\label{fig:GlobOptPoolsize}}
+\end{figure}
+
+
+Wenn man Grafik \ref{fig:GlobOptPoolsize} analysiert, so erkennt man, dass der standard Ansatz zwar meistens die Nase vorn hat, dies jedoch nur, weil er bei Argumenten mit nur einer Prämisse wesentlich besser funktioniert. So erreicht er denn bei Argumenten mit einer Prämisse und einer Poolgrösse von 5 zu 80\% das globale Optimum im Vergleich zu Argumenten mit einer Prämisse, wo es nur 56\% sind. Schaut man sich die zweiprämissigen Argumente an, so erreicht Piecemeal schon ab einer Poolgrösse von 6 öfter ein globales Optimum.
+
+Warum die Anzahl an Argumenten Einfluss auf die Leistungsfähigkeit des Ansatzes hat, kann ich nicht mit Sicherheit sagen. Was die Analyse allerdings zeigt, sofern meine Daten richtig sind, dass der Standard-Ansatz nicht so robust ist, wie \autocite[S.~17-18]{beisbart_making_2015} behaupten. In ihren untersuchungen verändern \citeauthor{beisbart_making_2015} die Gewichtungen der Achievmentfunktion und die Überzeugungen, nicht aber die Argumentstruktur und die Menge der Sätze. Die erreichten 95\% von Prozessen, die ein globales Optimum erreichen, kann ich mit den von mir erstellten Daten nicht annähernd nachweisen.
+
+\textit{\textcolor{red}{Ich werde noch mehr dazu erzählen wie die Grafiken entstanden sind. Dabei werde ich nicht auf Programmcode zurückgreifen, sondern einfach erklären, welche Werte ich wann wie gefiltert habe, damit der Leser verstehen kann, was die Diagramme darstellen.}}
+
+Alle Grafiken können als interaktive SVGs auf dieser Website abgerufen werden: \href{https://piecemeal.flicks.jetzt/}{piecemeal.flicks.jetzt}
+
 
 
 \section{Fazit}
