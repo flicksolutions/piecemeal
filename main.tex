@@ -387,7 +387,27 @@ Die Überzeugungen passen sich danach wieder an den zufällig gewählten Satz an
 Wie kann das Problem gelöst werden? Die eine offensichtliche Antwort lautet, dass das Programm die Reihenfolge einhalten kann, welche ich in meinem Ansatz definiert habe. Noch viel wichtiger scheint mir aber, eine bessere erste Theorie als die leere Menge zu finden. Ein Ansatz dafür befindet sich im Anhang. Eine andere Möglichkeit wäre es, $T_0 := C_0$ zu setzen.
 
 \paragraph{Strukturen mit mehr als einer Prämisse}
-Das Überlegungsgleichgewicht ist durch
+Obwohl in dieser Arbeit nur Grafiken eingearbeitet sind, in der dialektische Strukturen abgebildet sind, die Argumente mit nur einer Prämisse haben, ist das Modell von \citeauthor{beisbart_making_2021} ist nicht darauf beschränkt. Es ist möglich, Argumente mit vielen Prämissen einzubauen. Beispielsweise folgt dann aus Satz $s1$ und $s2$ zusammen $s3$. Aber nur aus $s1$ oder $s2$ alleine folgt s3 nicht. Das folgende Argument stellt eine solche Struktur dar:
+
+\begin{center}
+\begin{tabular}{c p{9cm}}
+s1 & Alle Menschen sind sterblich.\\
+s2 & Sokrates ist ein Mensch.\\\hline
+C(s3) & Sokrates ist sterblich. 
+\end{tabular}
+\end{center}
+
+Nun ist es zwar der Fall, dass jedes Argument mit zwei oder mehr Prämissen zu einem Argument mit einer Prämisse zusammengefasst werden kann, indem man einen neuen Satz (bspw. $s4$) aus einer Konjunktion der Prämissen bildet:
+
+\begin{center}
+\begin{tabular}{c p{9cm}}
+s4 & Alle Menschen sind sterblich \textit{und} Sokrates ist ein Mensch.\\\hline
+C(s3) & Sokrates ist sterblich. 
+\end{tabular}
+\end{center}
+
+Aber dabei geht viel verloren, wir können uns nicht mehr auf die einzelnen Sätze in $s4$ beziehen. Und diese beispielsweise auch nicht angreifen. Argumente werden undurchsichtiger und unklarer, wenn sie auf diese Weise zusammengefasst werden.
+Jedoch vermute ich, dass der piecemeal Ansatz wie er in dieser Arbeit definiert ist, schlechter funktioniert, mit Argumenten, die mehr als eine Prämisse haben. Zur illustration ein neues Beispiel:
 
 \paragraph{Kritik an der Systematizität}
 Das Desideratum der Systematizität ist jenes mit dem höchsten Gewicht. Die Systematizität $S$ einer Theorie $T$ ist gemäss \autocite[S. 465]{beisbart_making_2021} wie folgt definiert:
