@@ -407,7 +407,23 @@ C(s3) & Sokrates ist sterblich.
 \end{center}
 
 Aber dabei geht viel verloren, wir können uns nicht mehr auf die einzelnen Sätze in $s4$ beziehen. Und diese beispielsweise auch nicht angreifen. Argumente werden undurchsichtiger und unklarer, wenn sie auf diese Weise zusammengefasst werden.
-Jedoch vermute ich, dass der piecemeal Ansatz wie er in dieser Arbeit definiert ist, schlechter funktioniert, mit Argumenten, die mehr als eine Prämisse haben. Zur illustration ein neues Beispiel:
+Jedoch vermute ich, dass der piecemeal Ansatz wie er in dieser Arbeit definiert ist, schlechter funktioniert, mit Argumenten, die mehr als eine Prämisse haben. Zur Illustration ein neues Beispiel:
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/2prem.png}
+  \caption{Einfachste Struktur mit zwei Prämissen\label{fig:2prem}}
+\end{figure}
+
+Wenn wir eine Theorie für den Satz $s3$ suchen, so können wir nur einen Satz hinzufügen. Fügen wir aber $s1$ oder $s2$ hinzu, so wird weder die Kohärenz, noch die Systematizität verbessert! Denn $s1$ alleine hat nur $s1$ im Inhalt. Gleiches gilt für $s2$. Zum Zustand, dass wir $\{s1,s2\}$ als Theorie haben, kommen wir nur über zwei Schritte, wobei der erste Schritt einer ist, der nie der bestmögliche ist. Dies führt dazu, dass bei dialektischen Strukturen mit Argumenten, die zwei Prämissen enthalten, kein globales Optimum erreicht wird. So ist zumindest meine vermutung, die ich in der Ensembleanalyse weiter verfolgen werde. Ich kann allerdings hier noch eine Struktur zeigen, bei der der Standard-Ansatz das Optimum erreicht, während der piecemeal Ansatz dies nicht tut:
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{images/standard_better.png}
+  \caption{piecemeal erreicht das globale Optimum nicht\label{fig:standard_better}}
+\end{figure}
+
+Aus dem genannten Grund kann der piecemeal Ansatz nie $s1$ und $s2$ in die Theorie aufnehmen und legt sich schlussendlich in der finalen Theorie auf einen einzelnen Satz in den initialen Überzeugungen fest, während der standard Ansatz schon im ersten Schritt die optimale Theorie $\{s1, s2\}$ findet und auch beibehält. Das Beispiel enthält übrigens aus einem bestimmten Grund so viele Sätze, die aus $\{s1. s2\}$ folgen. Das Desideratum der Systematizität muss entweder anders definiert werden, oder ihm muss weniger Gewicht zugestanden werden. Ich werde im nächsten Absatz weiter darauf eingehen. An dieser Stelle soll nur gesagt sein, dass die in Abbildung \ref{fig:standard_better} abgebildete Struktur ohne $s6$ nicht das gleiche globale Optimum hätte. Die globalen Optima wären jeweils ein einzelner Satz der initialen Überzeugungen als finale Überzeugung und als finale Theorie der gleiche Satz. Dies würden wir intuitiv wohl nicht als Optimum bezeichnen.
 
 \paragraph{Kritik an der Systematizität}
 Das Desideratum der Systematizität ist jenes mit dem höchsten Gewicht. Die Systematizität $S$ einer Theorie $T$ ist gemäss \autocite[S. 465]{beisbart_making_2021} wie folgt definiert:
